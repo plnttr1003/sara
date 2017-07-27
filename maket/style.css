@@ -24,11 +24,18 @@ line {
 svg {
 	position: absolute;
 }
+canvas {
+	opacity: 0;
+	width: 0!important;
+	height: 0!important;
+}
 .photo_container {
   width: 506px;
   height: 729px;
   border: 1px solid #000;
   position: relative;
+  /* transform: scale(2); */
+  transform-origin: 0 0;
 }
 .photo_uploader {
   position: absolute;
@@ -63,6 +70,8 @@ svg {
 .v_text {
 	height: 100%;
 	text-align: center;
+	position: relative;
+	height: 100%;
 }
 .bottom_text {
 	text-decoration: underline;
@@ -84,12 +93,34 @@ svg {
 	text-align: center;
 }
 .left_text {
-	writing-mode: vertical-lr;
 	float: left;
 	margin-left: 3.8%;
+	position: relative;
+	height: 100%;
+}
+.left_text > div {
+	transform: rotate(270deg);
+	transform-origin: 50% 0%;
+	position: absolute;
+	top: 70%;
+	white-space: nowrap;
+	width: 100%;
 }
 .right_text {
-	writing-mode: vertical-rl;
 	float: right;
 	margin-right: 3.8%;
+	position: relative;
+}
+.right_text > div {
+    transform: rotate(90deg);
+    transform-origin: 50% 0%;
+    position: absolute;
+    top: 40%;
+    white-space: nowrap;
+    width: 100%;
+}
+#render {
+	position: fixed;
+	top: 0;
+	left: 0;
 }

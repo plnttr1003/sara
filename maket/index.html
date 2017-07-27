@@ -4,26 +4,32 @@
 	<meta charset="UTF-8">
 	<title>Новое пространство</title>
 	<link rel="stylesheet" href="style.css">
+  <script src="html2canvas.js"></script>
 </head>
 <body>
-	<div class="photo_container">
-		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="100%" height="100%" viewBox="0 0 507.3 728.2" enable-background="new 0 0 507.3 728.2" xml:space="preserve">
-			<g>
-				<line fill="none" stroke="#000000" x1="0.7" y1="-0.1" x2="507.2" y2="727.4"/>
-				<line fill="none" stroke="#000000" x1="507.2" y1="-0.4" x2="0.6" y2="727.7"/>
-			</g>
-		</svg>
-		<div class="photo_uploader" id="drop_zone">PUT<br>YOUR<br>PHOTO<br>HERE</div>
-		<div class="text top_text">CONTEMPORARY ART IS...</div>
-		<div class="vertical_texts">
-			<div class="v_text small_text left_text">НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ</div>
-			<div class="v_text small_text right_text">NEWSPACEMOSCOW.RU</div>
-		</div>
-		<div class="text bottom_text text_input" contenteditable>PUT YOUR TEXT HERE</div>
-		<div class="hash_text small_text">#NEWSPACEMOSCOW</div>
-	</div>
-	<output id="list"></output>
+ <div class="photo_container">
+ 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  width="506" height="729" viewBox="0 0 506 729" enable-background="new 0 0 507.3 728.2" xml:space="preserve">
+ 		<g>
+ 			<line fill="none" stroke="#000000" x1="0" y1="0" x2="506" y2="729"/>
+ 			<line fill="none" stroke="#000000" x1="506" y1="0" x2="0" y2="729"/>
+ 		</g>
+ 	</svg>
+ 	<div class="photo_uploader" id="drop_zone">PUT<br>YOUR<br>PHOTO<br>HERE</div>
+    <!--<input type="file" id="files" name="file" />-->
+ 	<div class="text top_text">CONTEMPORARY ART IS...</div>
+ 	<div class="vertical_texts">
+ 		<div class="v_text small_text left_text">
+      <div>НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ</div>
+    </div>
+ 		<div class="v_text small_text right_text">
+      <div>NEWSPACEMOSCOW.RU</div>
+    </div>
+ 	</div>
+ 	<div class="text bottom_text text_input" contenteditable>PUT YOUR TEXT HERE</div>
+ 	<div class="hash_text small_text">#NEWSPACEMOSCOW</div>
+ </div>
+  <div id="render">434</div>
 </body>
 </html>
 
@@ -61,8 +67,23 @@ function handleDragOver(evt) {
 function handleDragLeave(evt) {
   dropZone.classList.remove('dragover');
 }
+function renderCanvas() {
+  html2canvas(document.querySelector('.photo_container'), {
+  onrendered: function(canvas) {
+    document.body.appendChild(canvas);
+  },
+  width: 1016,
+  height: 1462
+});
+}
+var render = document.getElementById('render');
 var dropZone = document.getElementById('drop_zone');
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('dragleave', handleDragLeave, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
+
+
+
+
+render.addEventListener('click', renderCanvas);
 </script>
