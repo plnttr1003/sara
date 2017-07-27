@@ -45,7 +45,7 @@ function renderCanvas() {
 }
 
 (function stylizeFileInput() {
-	var input = document.getElementById('fileInput');
+	var input = document.getElementById('file');
 	var label  = document.getElementById('labelForFile');
 	var labelVal = document.getElementById('labelForFile').innerHTML;
 

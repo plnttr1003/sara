@@ -97,7 +97,7 @@ app.route('/promo')
 	.post(promo.get_promo);
 
 // === promo Route
-app.route('/promo/:id').get(promo.promo);
+app.route('/i/:id').get(promo.promo);
 
 
 //!
@@ -127,7 +127,7 @@ app.route('/auth/users/remove')
 app.route('/auth/promo').get(checkAuth, admin_promo.list);
 
 // === Admin @add promo Route
-app.route('/auth/promo/add')
+app.route('/add')
 	 .get(admin_promo.add)
 	 .post(admin_promo.add_form);
 

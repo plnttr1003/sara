@@ -44,6 +44,10 @@ exports.add = function(req, res) {
 }
 
 exports.add_form = function(req, res) {
+	var files = req.files;
+
+	console.log('files', files);
+
 	var post = req.body;
 	var promoObjects = post;
 
@@ -51,11 +55,11 @@ exports.add_form = function(req, res) {
 	promo.title = promoObjects['title'],
 	promo.imageContent = promoObjects['imageContent'];
 
-	console.log(post.container);
+	console.log('promo', promo._id);
 
 
 	promo.save(function() {
-		res.redirect('/auth/promo');
+		res.redirect('/i/' + promo._id);
 	});
 }
 

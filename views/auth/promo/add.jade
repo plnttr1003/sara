@@ -1,28 +1,40 @@
 extends ../../layout
 
 block title
-	title ###
+	title= __('Новое пространство')
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
 block content
-	form(action='/auth/promo/'+ (!promo ? 'add' : 'edit'), method='post')
+	form(action='/'+ (!promo ? 'add' : 'edit'), method='post')
 		.photo_container
-			svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://		www.w3.org/1999/xlink', x='0px', y='0px', width='506', height='729', 		viewbox='0 0 506 729', enable-background='new 0 0 507.3 728.2', xml:space='		preserve')
+			svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='506', height='729', 		viewbox='0 0 506 729', enable-background='new 0 0 507.3 728.2', xml:space='		preserve')
 				g
 					line(fill='none', stroke='#000000', x1='0', y1='0', x2='506', y2='729')
 					line(fill='none', stroke='#000000', x1='506', y1='0', x2='0', y2='729')
 			#drop_zone.photo_uploader
-				input.inputfile#fileInput(name="fileInput", type="file")
-				label#labelForFile(for="fileInput")
-					| PUT
+				input.inputfile#file(name="file", type="file")
+				label#labelForFile(for="file")
+					span.rus
+						| МЕСТО
+						br
+						| ДЛЯ
+						br
+						| ФОТО
+					span.eng
+						| PUT
+						br
+						| YOUR
+						br
+						| PHOTO
+						br
+						| HERE
+			.text.top_text
+				.rus
+					| СОВРЕМЕННОЕ ИСКУССТВО
 					br
-					| YOUR
-					br
-					| PHOTO
-					br
-					| HERE
-			.text.top_text CONTEMPORARY ART IS...
+					| ЭТО...
+				.eng CONTEMPORARY ART IS...
 			.vertical_texts
 				.v_text.small_text.left_text
 					div НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ
@@ -33,9 +45,9 @@ block content
 
 			input(name='imageContent', id="imageContent", type='hidden')
 
-			input(type='submit', value='отправить')
+		input.save(type='submit', value='СОХРАНИТЬ')
 
-
+	script(type='text/javascript', src='/build/js/scripts.js')
 	script(type='text/javascript', src='/build/js/upload_script.js')
 
 

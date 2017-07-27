@@ -13,6 +13,11 @@ var userSchema = new Schema({
 var promoSchema = new Schema({
 	title: String,
 	imageContent: String,
+	path: {
+		original: String,
+		thumb: String
+	},
+	locale: String,
 	date: {type: Date, default: Date.now}
 });
 
