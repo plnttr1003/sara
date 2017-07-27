@@ -80,7 +80,7 @@ var globals = require('./routes/globals.js');
 // ------------------------
 
 function checkAuth (req, res, next) {
-	req.session.user_id ? next() : res.redirect('/login');
+	req.session.user_id ? next() : res.redirect('/');
 }
 
 // ------------------------

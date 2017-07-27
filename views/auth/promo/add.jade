@@ -13,13 +13,15 @@ block content
 					line(fill='none', stroke='#000000', x1='0', y1='0', x2='506', y2='729')
 					line(fill='none', stroke='#000000', x1='506', y1='0', x2='0', y2='729')
 			#drop_zone.photo_uploader
-				| PUT
-				br
-				| YOUR
-				br
-				| PHOTO
-				br
-				| HERE
+				input.inputfile#fileInput(name="fileInput", type="file")
+				label#labelForFile(for="fileInput")
+					| PUT
+					br
+					| YOUR
+					br
+					| PHOTO
+					br
+					| HERE
 			.text.top_text CONTEMPORARY ART IS...
 			.vertical_texts
 				.v_text.small_text.left_text
