@@ -71,15 +71,28 @@ exports.add_form = function(req, res) {
 
 	fs.mkdir(__appdir + '/public/images/promo/' + promo._id, function() {
 		var newPath = __appdir + '/public/images/promo/' + promo._id;
-		gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function() {
-			gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function() {
-				promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
-				promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
-				promo.save(function() {
-					res.redirect('/i/' + promo._id + '#s');
-				});
-			});
+
+
+		//var writeStream = fs.createWriteStream('/path/to/my/resized.jpg');
+		/*gm('/path/to/my/img.jpg')
+		.resize('200', '200')
+		.stream()
+		.pipe(writeStream);*/
+
+		var originalStream = fs.createWriteStream(newPath + '/original.jpg');
+		var thumbStream = fs.createWriteStream(newPath + '/thumb.jpg');
+
+		gm(files.image.path).resize(800, false).stream().pipe(originalStream);
+		gm(files.image.path).resize(400, false).stream().pipe(thumbStream);
+
+		promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
+		promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+
+		promo.save(function() {
+			res.redirect('/i/' + promo._id + '#s');
 		});
+
+
 	});
 }
 
