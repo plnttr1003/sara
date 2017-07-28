@@ -69,15 +69,8 @@ exports.add_form = function(req, res) {
 
 	console.log(gm());
 
-	fs.mkdir(__appdir + '/public/images/promo/' + promo._id, function() {
+	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
 		var newPath = __appdir + '/public/images/promo/' + promo._id;
-
-
-		//var writeStream = fs.createWriteStream('/path/to/my/resized.jpg');
-		/*gm('/path/to/my/img.jpg')
-		.resize('200', '200')
-		.stream()
-		.pipe(writeStream);*/
 
 		var originalStream = fs.createWriteStream(newPath + '/original.jpg');
 		var thumbStream = fs.createWriteStream(newPath + '/thumb.jpg');
@@ -91,7 +84,6 @@ exports.add_form = function(req, res) {
 		promo.save(function() {
 			res.redirect('/i/' + promo._id + '#s');
 		});
-
 
 	});
 }
