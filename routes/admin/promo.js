@@ -1,6 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
+var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
 var gm = require('gm').subClass({ imageMagick: true });
@@ -70,21 +71,24 @@ exports.add_form = function(req, res) {
 	console.log(gm());
 
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
-		var newPath = __appdir + '/public/images/promo/' + promo._id;
+	 var newPath = __appdir + '/public/images/promo/' + promo._id;
 
-		var originalStream = fs.createWriteStream(newPath + '/original.jpg');
-		var thumbStream = fs.createWriteStream(newPath + '/thumb.jpg');
+	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
+	  if (err) return next(err);
 
-		gm(files.image.path).resize(800, false).stream().pipe(originalStream);
-		gm(files.image.path).resize(400, false).stream().pipe(thumbStream);
+	  gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
+	   if (err) return next(err);
 
-		promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
-		promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+	   promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
+	   promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
 
-		promo.save(function() {
-			res.redirect('/i/' + promo._id + '#s');
-		});
-
+	   promo.save(function() {
+	    rimraf(files.image.path, function() {
+	     res.redirect('/i/' + promo._id + '#s');
+	    });
+	   });
+	  });
+	 });
 	});
 }
 
