@@ -38,8 +38,12 @@ function renderCanvas() {
 	onrendered: function(canvas) {
 		document.body.appendChild(canvas);
 		//console.log(canvas.toDataURL());
-		var imageData = canvas.toDataURL("image/png");
-		document.getElementById('imageContent').value = '';
+		//var imageData = canvas.toDataURL("image/png");
+		//document.getElementById('imageContent').value = '';
+		//document.body.style.backgroundImage = 'url(' + imageData + ')';
+		//console.log(decodeURI(imageData));
+
+		//document.getElementById('imageContent').value = imageData;
 		document.querySelector('form').submit();
 	},
 	width: 508,

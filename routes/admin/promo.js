@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
-var gm = require('gm').subClass({ imageMagick: true });
+var gm = require('gm');
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
@@ -69,8 +69,10 @@ exports.add_form = function(req, res, next) {
 
 
 	console.log(gm());
-	var newPath = __appdir + '/public/images/promo/' + promo._id;
 
+
+
+	var newPath = __appdir + '/public/images/promo/' + promo._id;
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
 	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
 	  if (err) return next(err);
