@@ -14,7 +14,7 @@ block content
 					g
 						line(fill='none', stroke='#000000', x1='0', y1='0', x2='506', y2='729')
 						line(fill='none', stroke='#000000', x1='506', y1='0', x2='0', y2='729')
-				.photo_uploader(style='background-image:url(' + item.imageContent +')')
+				.photo_uploader(style='background-image:url(' + item.path.original +')')
 				.text.top_text
 					- if (item.lang === 'rus')
 							.rus СОВРЕМЕННОЕ ИСКУССТВО ЭТО...

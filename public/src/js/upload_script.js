@@ -1,9 +1,10 @@
 function setBackground(imageType, imageBinaryCode) {
-	document.querySelector('.photo_uploader').textContent = '';
+	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
 	var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
 
 	document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
-	document.getElementById('imageContent').value = base64Image;
+	document.getElementById('imageContent').value = '';
+	//base64Image;
 }
 function handleFileSelect(evt) {
 	dropZone.classList.remove('dragover');
@@ -21,7 +22,6 @@ function handleFileSelect(evt) {
 		}
 	};
 	var blob = file.slice(start, stop + 1);
-
 	reader.readAsBinaryString(blob);
 }
 function handleDragOver(evt) {
@@ -29,7 +29,7 @@ function handleDragOver(evt) {
 	evt.preventDefault();
 	evt.dataTransfer.dropEffect = 'copy';
 	dropZone.classList.add('dragover');
-	document.querySelector('.photo_uploader').textContent = '';
+	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
 }
 function handleDragLeave(evt) {
 	dropZone.classList.remove('dragover');
@@ -45,7 +45,7 @@ function renderCanvas() {
 }
 
 (function stylizeFileInput() {
-	var input = document.getElementById('file');
+	var input = document.getElementById('image');
 	var label  = document.getElementById('labelForFile');
 	var labelVal = document.getElementById('labelForFile').innerHTML;
 

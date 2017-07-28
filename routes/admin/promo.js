@@ -44,23 +44,34 @@ exports.add = function(req, res) {
 }
 
 exports.add_form = function(req, res) {
-	var files = req.files;
-
-	console.log('files', files);
 
 	var post = req.body;
-	var promoObjects = post;
+	var files = req.files;
 
 	var promo = new Promo();
-	promo.title = promoObjects['title'],
-	promo.imageContent = promoObjects['imageContent'];
-	promo.lang = promoObjects['lang'];
+	promo.title = post.title;
+	promo.imageContent = post.imageContent;
+	promo.lang = post.lang;
 
-	console.log('promo', promo._id);
+	if (!files.image) {
+		return (function () {
+			promo.save(function(err, team) {
+				res.redirect('/i/' + promo._id + '#s');
+			});
+		})();
+	}
 
-
-	promo.save(function() {
-		res.redirect('/i/' + promo._id + '#s');
+	fs.mkdir(__appdir + '/public/images/promo/' + promo._id, function() {
+		var newPath = __appdir + '/public/images/promo/' + promo._id;;
+		gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function() {
+			gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function() {
+				promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
+				promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+				promo.save(function() {
+					res.redirect('/i/' + promo._id + '#s');
+				});
+			});
+		});
 	});
 }
 
