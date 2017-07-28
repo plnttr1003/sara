@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
-var gm = require('gm').subClass({ imageMagick: true });
+var gm = require('gm');
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
@@ -44,7 +44,7 @@ exports.add = function(req, res) {
 	res.render('auth/promo/add.jade');
 }
 
-exports.add_form = function(req, res) {
+exports.add_form = function(req, res, next) {
 
 	var post = req.body;
 	var files = req.files;
@@ -74,10 +74,10 @@ exports.add_form = function(req, res) {
 	 var newPath = __appdir + '/public/images/promo/' + promo._id;
 
 	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
-	  if (err) return console.log(err);
+	  if (err) return next(err);
 
 	  gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
-	   if (err) return console.log(err);
+	   if (err) return next(err);
 
 	   promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 	   promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
