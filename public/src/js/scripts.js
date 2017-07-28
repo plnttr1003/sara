@@ -22,12 +22,10 @@ function changeBodyClass() {
 	if (document.body.className.indexOf('rus') !== -1) {
 		document.body.className = 'eng'
 		document.querySelector('input.text.bottom_text.text_input').value = 'PUT YOUR TEXT HERE';
-		document.querySelector('input.save').value = 'SAVE';
 	}
 	else if (document.body.className.indexOf('eng') !== -1) {
 		document.body.className = 'rus'
 		document.querySelector('input.text.bottom_text.text_input').value = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
-		document.querySelector('input.save').value = 'СОХРАНИТЬ';
 	}
 }
 (function ready(fn) {

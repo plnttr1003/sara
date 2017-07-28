@@ -3,7 +3,6 @@ function setBackground(imageType, imageBinaryCode) {
 	var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
 
 	document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
-	document.getElementById('imageContent').value = '';
 	//base64Image;
 }
 function handleFileSelect(evt) {
@@ -38,9 +37,13 @@ function renderCanvas() {
 	html2canvas(document.querySelector('.photo_container'), {
 	onrendered: function(canvas) {
 		document.body.appendChild(canvas);
+		//console.log(canvas.toDataURL());
+		var imageData = canvas.toDataURL("image/png");
+		document.getElementById('imageContent').value = imageData;
+		document.querySelector('form').submit();
 	},
-	width: 1016,
-	height: 1462
+	width: 508,
+	height: 731
 });
 }
 
@@ -62,17 +65,15 @@ function renderCanvas() {
 				setBackground(file.type, evt.target.result);
 			}
 		};
-
 		var blob = file.slice(start, stop + 1);
-
 		reader.readAsBinaryString(blob);
 
 	});
 })();
 
-//var render = document.getElementById('render');
+var render = document.getElementById('render');
 var dropZone = document.getElementById('drop_zone');
-dropZone.addEventListener('dragover', handleDragOver, false);
-dropZone.addEventListener('dragleave', handleDragLeave, false);
-dropZone.addEventListener('drop', handleFileSelect, false);
-//render.addEventListener('click', renderCanvas);
+//dropZone.addEventListener('dragover', handleDragOver, false);
+//dropZone.addEventListener('dragleave', handleDragLeave, false);
+//dropZone.addEventListener('drop', handleFileSelect, false);
+render.addEventListener('click', renderCanvas);

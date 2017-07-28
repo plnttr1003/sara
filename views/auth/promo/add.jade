@@ -2,6 +2,17 @@ extends ../../layout
 
 block title
 	title #NEWSPACEMOSCOW
+	meta(name='keywords', content='НОВОЕ ПРОСТРАНСТВО, NEWSPACEMOSCOW, СОВРЕМЕННОЕ ИСКУССТВО, CONTEMPORARY ART')
+	meta(itemprop='name', content='#contemporaryart')
+	meta(itemprop='description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(name='twitter:card', content='summary')
+	meta(name='twitter:title', content='#contemporaryart')
+	meta(name='twitter:description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(property='og:type', content='website')
+	meta(property='og:title', content='#contemporaryart')
+	meta(property='og:description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(name='description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
@@ -45,9 +56,12 @@ block content
 			input(name='lang', id='lang', type='hidden', value='rus')
 			input(name='imageContent', id='imageContent', type='hidden')
 
-		input.save(type='submit', value='СОХРАНИТЬ')
+		.save#render
+			span.rus СОХРАНИТЬ
+			span.eng SAVE
 
-	script(type='text/javascript', src='/build/js/scripts.js')
-	script(type='text/javascript', src='/build/js/upload_script.js')
+	script(type='text/javascript', src='/build/libs/js/html2canvas.js')
+	script(type='text/javascript', src='/build/js/scripts.js' + version)
+	script(type='text/javascript', src='/build/js/upload_script.js' + version)
 
 

@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
-var gm = require('gm');
+var gm = require('gm').subClass({ imageMagick: true });
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
@@ -69,10 +69,9 @@ exports.add_form = function(req, res, next) {
 
 
 	console.log(gm());
+	var newPath = __appdir + '/public/images/promo/' + promo._id;
 
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
-	 var newPath = __appdir + '/public/images/promo/' + promo._id;
-
 	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
 	  if (err) return next(err);
 
@@ -90,6 +89,16 @@ exports.add_form = function(req, res, next) {
 	  });
 	 });
 	});
+
+	if (promo.imageContent) {
+		var base64String = promo.imageContent;
+		var base64Image = base64String.split(';base64,').pop();
+		fs.writeFile(newPath + '/share.png', base64Image, {encoding: 'base64'}, function(err) {
+		    console.log('File created');
+		});
+	}
+
+
 }
 
 

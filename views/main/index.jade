@@ -1,7 +1,25 @@
 extends ../layout
 
 block title
-	title #NEWSPACEMOSCOW
+	title #contemporaryart
+
+	meta(name='keywords', content='НОВОЕ ПРОСТРАНСТВО, NEWSPACEMOSCOW, СОВРЕМЕННОЕ ИСКУССТВО, CONTEMPORARY ART')
+	meta(itemprop='name', content='#contemporaryart')
+	meta(itemprop='description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(name='twitter:card', content='summary')
+	meta(name='twitter:site', content='http://46.36.219.198' + promo[0].path.thumb)
+	meta(name='twitter:title', content='#contemporaryart')
+	meta(name='twitter:description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(property='og:url', content='http://46.36.219.198' + promo[0].path.thumb)
+	meta(property='og:type', content='website')
+	meta(property='og:title', content='#contemporaryart')
+	meta(property='og:description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(name='description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
+	meta(property='og:image', content='http://46.36.219.198' + promo[0].path.thumb)
+	meta(name='twitter:image', content='http://46.36.219.198' + promo[0].path.thumb)
+	meta(itemprop='image', content='http://46.36.219.198' + promo[0].path.thumb)
+
+
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/main.css')
