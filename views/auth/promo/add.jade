@@ -1,7 +1,7 @@
 extends ../../layout
 
 block title
-	title= __('Новое пространство')
+	title #NEWSPACEMOSCOW
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
@@ -42,8 +42,8 @@ block content
 					div NEWSPACEMOSCOW.RU
 			input.text.bottom_text.text_input(name='title', value='PUT YOUR TEXT HERE')
 			.hash_text.small_text #NEWSPACEMOSCOW
-
-			input(name='imageContent', id="imageContent", type='hidden')
+			input(name='lang', id='lang', type='hidden', value='rus')
+			input(name='imageContent', id='imageContent', type='hidden')
 
 		input.save(type='submit', value='СОХРАНИТЬ')
 

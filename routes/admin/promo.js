@@ -54,12 +54,13 @@ exports.add_form = function(req, res) {
 	var promo = new Promo();
 	promo.title = promoObjects['title'],
 	promo.imageContent = promoObjects['imageContent'];
+	promo.lang = promoObjects['lang'];
 
 	console.log('promo', promo._id);
 
 
 	promo.save(function() {
-		res.redirect('/i/' + promo._id);
+		res.redirect('/i/' + promo._id + '#s');
 	});
 }
 
@@ -95,6 +96,7 @@ exports.edit_form = function(req, res) {
 	var promo = new Promo();
 	promo.title = promoObjects['title'],
 	promo.imageContent = promoObjects['imageContent'];
+	promo.lang = promoObjects['lang'];
 
 
 	promo.save(function() {

@@ -17,7 +17,7 @@ var promoSchema = new Schema({
 		original: String,
 		thumb: String
 	},
-	locale: String,
+	lang: String,
 	date: {type: Date, default: Date.now}
 });
 

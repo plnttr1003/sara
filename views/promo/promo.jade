@@ -1,7 +1,7 @@
 extends ../layout
 
 block title
-	title= promo.title
+	title #NEWSPACEMOSCOW
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/promo.css')
 block content_scripts
@@ -13,8 +13,10 @@ block content
 				line(fill='none', stroke='#000000', x1='506', y1='0', x2='0', y2='729')
 		.photo_uploader(style='background-image:url(' + promo.imageContent +')')
 		.text.top_text
-			.rus СОВРЕМЕННОЕ ИСКУССТВО ЭТО...
-			.end CONTEMPORARY ART IS...
+			- if (promo.lang === 'rus')
+					.rus СОВРЕМЕННОЕ ИСКУССТВО ЭТО...
+			- else
+					.eng CONTEMPORARY ART IS...
 		.vertical_texts
 			.v_text.small_text.left_text
 				div НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ
@@ -25,5 +27,15 @@ block content
 	.save
 		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
 		script(src='//yastatic.net/share2/share.js')
-		.s_text ПОДЕЛИТЬСЯ
-		.ya-share2(data-services='vkontakte,facebook,telegram')
+		a.s_text(href="/")
+			- if (promo.lang === 'rus')
+					.rus Все работы
+			- else
+					.eng All works
+		a.add(href="/add")
+			- if (promo.lang === 'rus')
+					.rus Сделать свой
+			- else
+					.eng Make own
+		.share_block
+			.ya-share2(data-services='vkontakte,facebook,telegram')

@@ -3,10 +3,21 @@ function getRandomInt(min, max) {
 }
 function init() {
 	var locales = ['rus', 'eng'];
-	document.body.className = locales[getRandomInt(0, 2)];
+	var locale = locales[getRandomInt(0, 2)]
+	document.body.className = locale;
 	changeBodyClass();
-	setInterval(changeBodyClass, 5000);
+	var localeInterval = setInterval(changeBodyClass, 5000);
+
+	document.querySelector('.text.bottom_text.text_input').addEventListener('focus', function() {
+		clearInterval(localeInterval);
+		this.setAttribute('placeholder', this.value);
+		this.style.textDecoration = 'none';
+		this.value = '';
+		document.getElementById('lang').value = document.body.className;
+		console.log('locale form', document.getElementById('lang'));
+	})
 }
+
 function changeBodyClass() {
 	if (document.body.className.indexOf('rus') !== -1) {
 		document.body.className = 'eng'
