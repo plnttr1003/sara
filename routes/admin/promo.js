@@ -61,8 +61,14 @@ exports.add_form = function(req, res) {
 		})();
 	}
 
+
+	console.log('__appdir', __appdir);
+	console.log('files.path', files.image.path);
+	console.log('files', files);
+
+
 	fs.mkdir(__appdir + '/public/images/promo/' + promo._id, function() {
-		var newPath = __appdir + '/public/images/promo/' + promo._id;;
+		var newPath = __appdir + '/public/images/promo/' + promo._id;
 		gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function() {
 			gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function() {
 				promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
