@@ -39,7 +39,7 @@ function renderCanvas() {
 		document.body.appendChild(canvas);
 		//console.log(canvas.toDataURL());
 		var imageData = canvas.toDataURL("image/png");
-		document.getElementById('imageContent').value = imageData;
+		document.getElementById('imageContent').value = '';
 		document.querySelector('form').submit();
 	},
 	width: 508,
