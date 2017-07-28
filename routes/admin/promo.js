@@ -74,10 +74,10 @@ exports.add_form = function(req, res) {
 	 var newPath = __appdir + '/public/images/promo/' + promo._id;
 
 	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
-	  if (err) return next(err);
+	  if (err) return console.log(err);
 
 	  gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
-	   if (err) return next(err);
+	   if (err) return console.log(err);
 
 	   promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 	   promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
