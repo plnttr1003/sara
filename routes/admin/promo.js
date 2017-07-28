@@ -67,6 +67,8 @@ exports.add_form = function(req, res) {
 	console.log('files', files);
 
 
+	console.log(gm());
+
 	fs.mkdir(__appdir + '/public/images/promo/' + promo._id, function() {
 		var newPath = __appdir + '/public/images/promo/' + promo._id;
 		gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function() {
