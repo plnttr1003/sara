@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
-var gm = require('gm').subClass({imageMagick: true});
+var gm = require('gm');
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
