@@ -34,7 +34,7 @@ function handleDragLeave(evt) {
 	dropZone.classList.remove('dragover');
 }
 function renderCanvas() {
-	html2canvas(document.querySelector('.photo_container'), {
+	/*html2canvas(document.querySelector('.photo_container'), {
 	onrendered: function(canvas) {
 		document.body.appendChild(canvas);
 		//console.log(canvas.toDataURL());
@@ -49,6 +49,9 @@ function renderCanvas() {
 	width: 508,
 	height: 731
 });
+	*/
+	document.querySelector('.svg_spinner').className = 'svg_spinner show';
+	setTimeout(function(){document.querySelector('form').submit()}, 5000);
 }
 
 (function stylizeFileInput() {

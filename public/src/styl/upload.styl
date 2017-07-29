@@ -41,3 +41,49 @@ body.eng
 	&:hover
 		color #fff
 		background #000
+
+.svg_spinner
+	position fixed
+	top 0
+	bottom 0
+	left 0
+	right 0
+	z-index: 200
+	background  rgba(255,255,255,0.9)
+	display flex
+	justify-content center
+	align-items center
+
+
+.svg_spinner
+	display none
+	opacity 0
+	transition 0.2s ease opacity
+
+.svg_spinner.show
+	display flex
+	opacity 1
+	.svg_spinner_container
+		width 250px
+		height 50px
+		display block
+		svg
+			position relative
+			display block
+			path
+				stroke-width 1
+				stroke #000
+				stroke-dasharray 300
+				stroke-dashoffset 300
+				animation dash 2s linear alternate infinite
+
+@keyframes dash {
+	0% {
+		stroke-dashoffset 300
+	}
+	100% {
+		stroke-dashoffset 0
+	}
+}
+
+

@@ -14,9 +14,20 @@ function init() {
 		this.style.textDecoration = 'none';
 		this.value = '';
 		document.getElementById('lang').value = document.body.className;
-		console.log('locale form', document.getElementById('lang'));
 	})
+
+	document.getElementById('image').addEventListener('focus', function() {
+		clearInterval(localeInterval);
+	})
+
+	document.getElementById('render').addEventListener('click', function() {
+		clearInterval(localeInterval);
+	})
+
+
 }
+
+
 
 function changeBodyClass() {
 	if (document.body.className.indexOf('rus') !== -1) {
