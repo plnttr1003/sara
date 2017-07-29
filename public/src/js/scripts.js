@@ -1,3 +1,7 @@
+var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
+var textInput = document.getElementById('text_input');
+
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -8,21 +12,30 @@ function init() {
 	changeBodyClass();
 	var localeInterval = setInterval(changeBodyClass, 5000);
 
-	document.querySelector('.text.bottom_text.text_input').addEventListener('focus', function() {
+
+	var clearedTextInput = false;
+	textPlaceHolder.addEventListener('focus', function() {
 		clearInterval(localeInterval);
-		this.setAttribute('placeholder', this.value);
 		this.style.textDecoration = 'none';
-		this.value = '';
+		if (!clearedTextInput) {
+			this.textContent = '';
+			clearedTextInput = true;
+		}
 		document.getElementById('lang').value = document.body.className;
-	})
+	});
+
+	textPlaceHolder.addEventListener('blur', function() {
+		textInput.value = this.textContent;
+	});
+
 
 	document.getElementById('image').addEventListener('focus', function() {
 		clearInterval(localeInterval);
-	})
+	});
 
 	document.getElementById('render').addEventListener('click', function() {
 		clearInterval(localeInterval);
-	})
+	});
 
 
 }
@@ -32,11 +45,13 @@ function init() {
 function changeBodyClass() {
 	if (document.body.className.indexOf('rus') !== -1) {
 		document.body.className = 'eng'
-		document.querySelector('input.text.bottom_text.text_input').value = 'PUT YOUR TEXT HERE';
+		textPlaceHolder.textContent = 'PUT YOUR TEXT HERE';
+		textInput.value = 'PUT YOUR TEXT HERE';
 	}
 	else if (document.body.className.indexOf('eng') !== -1) {
 		document.body.className = 'rus'
-		document.querySelector('input.text.bottom_text.text_input').value = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
+		textPlaceHolder.textContent = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
+		textInput.value = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
 	}
 }
 (function ready(fn) {

@@ -34,23 +34,16 @@ function handleDragLeave(evt) {
 	dropZone.classList.remove('dragover');
 }
 function renderCanvas() {
-	/*html2canvas(document.querySelector('.photo_container'), {
-	onrendered: function(canvas) {
-		document.body.appendChild(canvas);
-		//console.log(canvas.toDataURL());
-		//var imageData = canvas.toDataURL("image/png");
-		//document.getElementById('imageContent').value = '';
-		//document.body.style.backgroundImage = 'url(' + imageData + ')';
-		//console.log(decodeURI(imageData));
-
-		//document.getElementById('imageContent').value = imageData;
-		document.querySelector('form').submit();
-	},
-	width: 508,
-	height: 731
-});
-	*/
+	var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
 	document.querySelector('.svg_spinner').className = 'svg_spinner show';
+	var placeholderTextSpan = document.createElement('span');
+	placeholderTextSpan.textContent = textPlaceHolder.textContent;
+	textPlaceHolder.textContent = '';
+	textPlaceHolder.appendChild(placeholderTextSpan);
+
+	document.getElementById('textWidth').value = placeholderTextSpan.offsetWidth;
+
+	console.log('width', placeholderTextSpan.offsetWidth);
 	setTimeout(function(){document.querySelector('form').submit()}, 5000);
 }
 

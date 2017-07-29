@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
-var gm = require('gm');
+var gm = require('gm').subClass({imageMagick: true});
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
@@ -51,7 +51,7 @@ exports.add_form = function(req, res, next) {
 
 	var promo = new Promo();
 	promo.title = post.title;
-	promo.imageContent = post.imageContent;
+	promo.textWidth = post.textWidth;
 	promo.lang = post.lang;
 
 	if (!files.image) {
@@ -62,41 +62,62 @@ exports.add_form = function(req, res, next) {
 		})();
 	}
 
-
-	console.log('__appdir', __appdir);
-	console.log('files.path', files.image.path);
-	console.log('files', files);
-
-
-	console.log(gm());
-
-
-
 	var newPath = __appdir + '/public/images/promo/' + promo._id;
+	var framePath = __appdir + (promo.lang === 'rus' ? '/public/images/frame_ru.png' : '/public/images/frame_en.png');
+
+	var fontName = __appdir + '/public/fonts/Formular-Medium.ttf';
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
-	 gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
-	  if (err) return next(err);
+		gm(files.image.path).size(function(err, size) {
+			if (err) return next(err);
 
-	  gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
-	   if (err) return next(err);
+					gm(files.image.path).quality(100)
+						.resize(size.width >= size.height ? (size.width * (405 / size.height)) : 282)
+						.crop(282, 405, size.width >= size.height ? ((size.width * (405 / size.height)) - 282) / 2 : 0,  size.		width >= size.height ? 0 : ((size.height * (282 / size.width)) - 405) / 2)
+						.write(newPath + '/logoTemp.jpg', function(err) { // crop 282x405
+							if (err) return next(err);
 
-	   promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
-	   promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+							gm(framePath).quality(100)
+								.font(fontName, 20)
+								.drawText((508 - promo.textWidth) / 2, 662, promo.title)
+								.write(newPath + '/frameText.jpg', function(err) {
 
-	   promo.save(function() {
-	    rimraf(files.image.path, function() {
-	     res.redirect('/i/' + promo._id + '#s');
-	    });
-	   });
-	  });
-	 });
+								gm(newPath + '/frameText.jpg').quality(100)
+									.command('composite')
+									.gravity('Center')
+									.in(newPath + '/logoTemp.jpg')
+									.write(newPath + '/s.jpg', function(err) { // crop 282x405
+										if (err) return next(err);
+									})
+							})
+					});
+
+
+			gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
+					if (err) return next(err);
+
+				gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
+						if (err) return next(err);
+
+							promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
+							promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+							//promo.path.share = 'image/promo/' + promo._id + '/logo.jpg'
+							del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
+							promo.save(function() {
+								rimraf(files.image.path, function() {
+									res.redirect('/i/' + promo._id + '#s');
+						});
+					});
+
+				});
+			});
+		});
 	});
 
 	if (promo.imageContent) {
 		var base64String = promo.imageContent;
 		var base64Image = base64String.split(';base64,').pop();
 		fs.writeFile(newPath + '/share.png', base64Image, {encoding: 'base64'}, function(err) {
-		    console.log('File created');
+				console.log('File created');
 		});
 	}
 

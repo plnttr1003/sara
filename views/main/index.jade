@@ -35,7 +35,10 @@ block content
 				.photo_uploader(style='background-image:url(' + item.path.original +')')
 				.text.top_text
 					- if (item.lang === 'rus')
-							.rus СОВРЕМЕННОЕ ИСКУССТВО ЭТО...
+							.rus
+								| СОВРЕМЕННОЕ ИСКУССТВО
+								br
+								| ЭТО...
 					- else
 							.eng CONTEMPORARY ART IS...
 				.vertical_texts

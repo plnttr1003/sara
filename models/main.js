@@ -12,7 +12,7 @@ var userSchema = new Schema({
 
 var promoSchema = new Schema({
 	title: String,
-	imageContent: String,
+	textWidth: String,
 	path: {
 		original: String,
 		thumb: String

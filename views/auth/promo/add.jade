@@ -52,10 +52,11 @@ block content
 					div НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ
 				.v_text.small_text.right_text
 					div NEWSPACEMOSCOW.RU
-			input.text.bottom_text.text_input(name='title', value='PUT YOUR TEXT HERE')
+			.t3.text.bottom_text.text_input(contenteditable) ЧТО ДУМАЕТЕ ОБ ЭТОМ?
+			input(name='title', id='text_input', value='ЧТО ДУМАЕТЕ ОБ ЭТОМ?', type='hidden')
 			.hash_text.small_text #NEWSPACEMOSCOW
 			input(name='lang', id='lang', type='hidden', value='rus')
-			input(name='imageContent', id='imageContent', type='hidden')
+			input(name='textWidth', id='textWidth', type='hidden')
 
 		.save#render
 			span.rus СОХРАНИТЬ
@@ -90,9 +91,5 @@ block content
 
 
 
-
-
-
-	script(type='text/javascript', src='/build/libs/js/html2canvas.js')
 	script(type='text/javascript', src='/build/js/scripts.js' + version)
 	script(type='text/javascript', src='/build/js/upload_script.js' + version)
