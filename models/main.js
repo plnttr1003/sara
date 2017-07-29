@@ -15,7 +15,8 @@ var promoSchema = new Schema({
 	textWidth: String,
 	path: {
 		original: String,
-		thumb: String
+		thumb: String,
+		share: String
 	},
 	lang: String,
 	date: {type: Date, default: Date.now}

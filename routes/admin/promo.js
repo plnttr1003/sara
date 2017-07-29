@@ -100,7 +100,7 @@ exports.add_form = function(req, res, next) {
 
 							promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 							promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
-							//promo.path.share = 'image/promo/' + promo._id + '/logo.jpg'
+							promo.path.share = 'images/promo/' + promo._id + '/s.jpg'
 							del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
 							promo.save(function() {
 								rimraf(files.image.path, function() {
@@ -112,14 +112,6 @@ exports.add_form = function(req, res, next) {
 			});
 		});
 	});
-
-	if (promo.imageContent) {
-		var base64String = promo.imageContent;
-		var base64Image = base64String.split(';base64,').pop();
-		fs.writeFile(newPath + '/share.png', base64Image, {encoding: 'base64'}, function(err) {
-				console.log('File created');
-		});
-	}
 
 
 }
