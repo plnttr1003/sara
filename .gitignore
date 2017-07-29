@@ -6,5 +6,5 @@
 /uploads*
 /public/build/js*
 /public/build/css*
-/public/images/*
+/public/images/promo/*
 .DS_Store
