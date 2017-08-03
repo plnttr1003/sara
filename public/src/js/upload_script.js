@@ -2,8 +2,14 @@ function setBackground(imageType, imageBinaryCode) {
 	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
 	var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
 
-	document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
-	//base64Image;
+	//document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
+	var blobImg = document.createElement('img');
+	blobImg.src = base64Image;
+	document.querySelector('.photo_uploader').appendChild(blobImg);
+	blobImg.offsetWidth = 'auto';
+	blobImg.offsetHeight = 'auto';
+
+	console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
 }
 function handleFileSelect(evt) {
 	dropZone.classList.remove('dragover');

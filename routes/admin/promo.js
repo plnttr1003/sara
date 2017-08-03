@@ -5,6 +5,7 @@ var rimraf = require('rimraf');
 var del = require('del');
 var async = require('async');
 var gm = require('gm');
+//var gm = require('gm').subClass({imageMagick: true});
 var del = require('del');
 
 var Promo = require('../../models/main.js').Promo;
@@ -70,7 +71,7 @@ exports.add_form = function(req, res, next) {
 		gm(files.image.path).size(function(err, size) {
 			if (err) return next(err);
 
-					gm(files.image.path).quality(100)
+					gm(files.image.path).autoOrient().quality(100)
 						.resize(size.width >= size.height ? (size.width * (405 / size.height)) : 282)
 						.crop(282, 405, size.width >= size.height ? ((size.width * (405 / size.height)) - 282) / 2 : 0,  size.		width >= size.height ? 0 : ((size.height * (282 / size.width)) - 405) / 2)
 						.write(newPath + '/logoTemp.jpg', function(err) { // crop 282x405
@@ -92,10 +93,10 @@ exports.add_form = function(req, res, next) {
 					});
 
 
-			gm(files.image.path).resize(800, false).write(newPath + '/original.jpg', function(err) {
+			gm(files.image.path).autoOrient().resize(800, false).write(newPath + '/original.jpg', function(err) {
 					if (err) return next(err);
 
-				gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function(err) {
+				gm(files.image.path).autoOrient().resize(400, false).write(newPath + '/thumb.jpg', function(err) {
 						if (err) return next(err);
 
 							promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
