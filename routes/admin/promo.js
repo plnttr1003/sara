@@ -68,47 +68,51 @@ exports.add_form = function(req, res, next) {
 
 	var fontName = __appdir + '/public/fonts/Formular-Medium.ttf';
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
-		gm(files.image.path).size(function(err, size) {
-			if (err) return next(err);
+		gm(files.image.path).orientation(function(err, orient) {
+			gm(files.image.path).size(function(err, size) {
+				if (err) return next(err);
+						console.log('orientation ', orient);
+						var vertical = (orient === 'RightTop' || orient === 'LeftBottom');
+						console.log('vertical ', vertical);
+						gm(files.image.path).autoOrient().quality(100)
+							.resize(((size.width >= size.height) && !vertical) ? (size.width * (405 / size.height)) : 282)
+							.crop(282, 405, ((size.width >= size.height) && !vertical) ? ((size.width * (405 / size.height)) - 282) / 2 : 0,  ((size.width >= size.height) && !vertical) ? 0 : ((size.height * (282 / size.width)) - 405) / 2)
+							.write(newPath + '/logoTemp.jpg', function(err) { // crop 282x405
+								if (err) return next(err);
 
-					gm(files.image.path).autoOrient().quality(100)
-						.resize(size.width >= size.height ? (size.width * (405 / size.height)) : 282)
-						.crop(282, 405, size.width >= size.height ? ((size.width * (405 / size.height)) - 282) / 2 : 0,  size.		width >= size.height ? 0 : ((size.height * (282 / size.width)) - 405) / 2)
-						.write(newPath + '/logoTemp.jpg', function(err) { // crop 282x405
-							if (err) return next(err);
+								gm(framePath).quality(100)
+									.font(fontName, 20)
+									.drawText((508 - promo.textWidth) / 2, 662, promo.title)
+									.write(newPath + '/frameText.jpg', function(err) {
 
-							gm(framePath).quality(100)
-								.font(fontName, 20)
-								.drawText((508 - promo.textWidth) / 2, 662, promo.title)
-								.write(newPath + '/frameText.jpg', function(err) {
-
-								gm(newPath + '/frameText.jpg').quality(100)
-									.command('composite')
-									.gravity('Center')
-									.in(newPath + '/logoTemp.jpg')
-									.write(newPath + '/s.jpg', function(err) { // crop 282x405
-										if (err) return next(err);
-									})
-							})
-					});
+									gm(newPath + '/frameText.jpg').quality(100)
+										.command('composite')
+										.gravity('Center')
+										.in(newPath + '/logoTemp.jpg')
+										.write(newPath + '/s.jpg', function(err) { // crop 282x405
+											if (err) return next(err);
+										})
+								})
+						});
 
 
-			gm(files.image.path).autoOrient().resize(800, false).write(newPath + '/original.jpg', function(err) {
-					if (err) return next(err);
-
-				gm(files.image.path).autoOrient().resize(400, false).write(newPath + '/thumb.jpg', function(err) {
+				gm(files.image.path).autoOrient().resize(800, false).write(newPath + '/original.jpg', function(err) {
 						if (err) return next(err);
 
-							promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
-							promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
-							promo.path.share = 'images/promo/' + promo._id + '/s.jpg'
-							del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
-							promo.save(function() {
-								rimraf(files.image.path, function() {
-									res.redirect('/i/' + promo._id);
-						});
-					});
+					gm(files.image.path).autoOrient().resize(400, false).write(newPath + '/thumb.jpg', function(err) {
+							if (err) return next(err);
 
+								promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
+								promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
+								promo.path.share = 'images/promo/' + promo._id + '/s.jpg'
+								//del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
+								promo.save(function() {
+									rimraf(files.image.path, function() {
+										res.redirect('/i/' + promo._id);
+							});
+						});
+
+					});
 				});
 			});
 		});
