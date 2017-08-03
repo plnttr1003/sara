@@ -12,6 +12,9 @@ html, body
 	padding 12px 0px
 	display flex
 	justify-content space-between
+	align-items center
+	.s_text
+		width 130px
 	a
 		display block
 		text-decoration underline
@@ -20,28 +23,108 @@ html, body
 			text-transform uppercase
 		&:hover
 			text-decoration none
-	ul
-		li
-			.ya-share2__badge
-				background none
-				.ya-share2__icon
-					background-image none
-					font-family 'icons'
-					font-size 19px
-					color #000
-					&:hover
-						color #333
-			&.ya-share2__item_service_facebook
-				.ya-share2__icon
-					&:after
-						content ''
+	.share_outer
+		width 130px
+		.share
+			font-family 'icons2'
+			pointer-events all
+			vertical-align top
+			display inline-block
+			height 40px
+			width 40px
+			border 2px solid #000
+			border-radius 50%
+			font-size 22px
+			text-align center
+			line-height 40px
+			text-decoration none
+			float right
+			&:after
+				content ''
+			&:hover
+				background #eee
+#share
+	opacity 0
+	z-index -1
+	transition 0.3s ease opacity
+	top 0
+	left 0
+	right 0
+	bottom 0
+	position absolute
+	background: rgba(255, 255, 255, 0.88);
+	display flex
+	align-items center
+	justify-content center
+	.share_inner
+		display flex
+		flex-direction column
+	.share_title
+		font-size 20px
+		margin 0 0 10px
+	&:target
+		z-index 10
+		opacity 1
+	.ya-share2
+		ul.ya-share2__list
+			display flex
+			width 180px
+			justify-content space-between
+			li.ya-share2__item_service_vkontakte
+				order 1
+			li.ya-share2__item_service_facebook
+				order 0
+			li.ya-share2__item_service_telegram
+				order 2
+			li
+				margin 0
+				.ya-share2__badge
+					background none
+					.ya-share2__icon
+						background-image none
+						font-family 'icons'
+						font-size 38px
+						color #000
+						height 39px
+						width auto
+						margin 0 0px
+						text-align center
+						&:hover
+							color #333
+						&:after
+							display inline-block
+				&.ya-share2__item_service_facebook
+					.ya-share2__icon
+						&:after
+							content ''
 
-			&.ya-share2__item_service_vkontakte
-				.ya-share2__icon
-					&:after
-						content ''
+				&.ya-share2__item_service_vkontakte
+					.ya-share2__icon
+						&:after
+							content ''
 
-			&.ya-share2__item_service_telegram
-				.ya-share2__icon
-					&:after
-						content ''
+				&.ya-share2__item_service_telegram
+					.ya-share2__icon
+						&:after
+							content ''
+
+	.share_close
+		font-family 'icons2'
+		pointer-events all
+		vertical-align top
+		display inline-block
+		height 40px
+		width 40px
+		border 2px solid #000
+		border-radius 50%
+		font-size 32px
+		text-align center
+		line-height 40px
+		text-decoration none
+		top 20px
+		right 20px
+		position absolute
+		&:hover
+			background #eee
+		&:after
+			content ""

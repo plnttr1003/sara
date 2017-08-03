@@ -12,4 +12,10 @@
 		font-weight: 500;
 		font-style: normal;
 }
-
+@font-face {
+		font-family: 'icons2';
+		src: url('../../../fonts/icons2.woff2') format('woff2'),
+				url('../../../fonts/icons2.woff') format('woff');
+		font-weight: 500;
+		font-style: normal;
+}

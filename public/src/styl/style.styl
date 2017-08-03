@@ -47,10 +47,21 @@ canvas
 	background-size cover
 	background-position 50%
 	background-color #fff
+	overflow hidden
 	img
-		width 100%
-		height auto
-
+		position absolute
+		opacity 0
+		transition 0.2s ease opacity
+	&.horizontal_loaded
+		img
+			height 100%
+			width auto
+			opacity 1
+	&.vertical_loaded
+		img
+			width 100%
+			height auto
+			opacity 1
 
 .vertical_texts
 	width 100%

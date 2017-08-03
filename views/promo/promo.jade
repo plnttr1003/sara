@@ -45,8 +45,6 @@ block content
 		.text.bottom_text.text_input= promo.title
 		.hash_text.small_text #NEWSPACEMOSCOW
 	.save
-		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
-		script(src='//yastatic.net/share2/share.js')
 		a.s_text(href="/")
 			- if (promo.lang === 'rus')
 					.rus Все работы
@@ -57,5 +55,16 @@ block content
 					.rus Сделать свой
 			- else
 					.eng Make own
-		.share_block
+		.share_outer
+			a.share(href='#share')
+	#share.share_block
+		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
+		script(src='//yastatic.net/share2/share.js')
+		a.share_close(href="#")
+		.share_inner
+			.share_title
+				- if (promo.lang === 'rus')
+						.rus ПОДЕЛИТЬСЯ...
+				- else
+						.eng SHARE...
 			.ya-share2(data-services='vkontakte,facebook,telegram')

@@ -4,12 +4,17 @@ function setBackground(imageType, imageBinaryCode) {
 
 	//document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
 	var blobImg = document.createElement('img');
+	var photoUploader = document.querySelector('.photo_uploader');
 	blobImg.src = base64Image;
-	document.querySelector('.photo_uploader').appendChild(blobImg);
-	blobImg.offsetWidth = 'auto';
-	blobImg.offsetHeight = 'auto';
-
-	console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
+	photoUploader.appendChild(blobImg);
+	blobImg.addEventListener('load', function(){
+		blobImg.offsetWidth = 'auto';
+		blobImg.offsetHeight = 'auto';
+		console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
+		console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
+		if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) photoUploader.className = 'photo_uploader horizontal_loaded'
+		else photoUploader.className = 'photo_uploader vertical_loaded'
+	})
 }
 function handleFileSelect(evt) {
 	dropZone.classList.remove('dragover');
