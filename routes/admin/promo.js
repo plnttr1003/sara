@@ -58,7 +58,7 @@ exports.add_form = function(req, res, next) {
 	if (!files.image) {
 		return (function () {
 			promo.save(function(err, team) {
-				res.redirect('/i/' + promo._id + '#s');
+				res.redirect('/i/' + promo._id);
 			});
 		})();
 	}
