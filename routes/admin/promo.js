@@ -105,7 +105,7 @@ exports.add_form = function(req, res, next) {
 							del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
 							promo.save(function() {
 								rimraf(files.image.path, function() {
-									res.redirect('/i/' + promo._id + '#s');
+									res.redirect('/i/' + promo._id);
 						});
 					});
 
