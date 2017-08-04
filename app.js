@@ -132,9 +132,9 @@ app.route('/add')
 	 .post(admin_promo.add_form);
 
 // === Admin @edit promo Route
-app.route('/auth/promo/edit/:id')
-	 .get(checkAuth, admin_promo.edit)
-	 .post(checkAuth, admin_promo.edit_form);
+app.route('/edit/:id')
+	 .get(admin_promo.edit)
+	 .post(admin_promo.edit_form);
 
 // === Admin @remove promo Route
 app.route('/auth/promo/remove')

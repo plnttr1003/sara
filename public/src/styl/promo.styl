@@ -18,7 +18,13 @@ html, body
 		text-decoration underline
 		cursor pointer
 		&.add
-			text-transform uppercase
+			font-family icons
+			font-size 30px
+			text-decoration none
+			&:hover
+				color #5d5d5d
+		&.edit
+			display none
 		&:hover
 			text-decoration none
 	.share
@@ -26,22 +32,21 @@ html, body
 		pointer-events all
 		vertical-align top
 		display inline-block
-		font-size 22px
+		font-size 19px
 		text-align right
 		text-decoration none
 		float right
-		width 40px
-		height 40px
+		width 34px
+		height 34px
 		text-align center
-		line-height 40px
+		line-height 35px
+		border-radius 50%
+		background #000
+		color #fff
 		&:after
 			content ''
-			display inline-block
-			width 40px
-			height 40px
-			margin-left 7px
 		&:hover
-			color #5d5d5d
+			background #5d5d5d
 #share
 	opacity 0
 	z-index -1
@@ -100,7 +105,7 @@ html, body
 				&.ya-share2__item_service_vkontakte
 					.ya-share2__icon
 						&:after
-							content ''
+							content ''
 
 				&.ya-share2__item_service_telegram
 					.ya-share2__icon

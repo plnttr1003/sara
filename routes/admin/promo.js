@@ -92,8 +92,6 @@ exports.add_form = function(req, res, next) {
 										.write(newPath + '/s.jpg', function(err) { // crop 282x405
 											if (err) return next(err);
 
-
-
 												gm(files.image.path).autoOrient().resize(800, false).write(newPath + '/original.jpg', function(err) {
 														if (err) return next(err);
 
@@ -103,7 +101,9 @@ exports.add_form = function(req, res, next) {
 																promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 																promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
 																promo.path.share = 'images/promo/' + promo._id + '/s.jpg'
-																//del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
+																del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
+																console.log(promo._id, true);
+																res.cookie('_co' + promo._id, true);
 																promo.save(function() {
 																	rimraf(files.image.path, function() {
 																		res.redirect('/i/' + promo._id);
@@ -133,6 +133,11 @@ exports.add_form = function(req, res, next) {
 exports.edit = function(req, res) {
 
 	var id = req.params.id;
+	var cookieName = '_co' + id;
+	console.log('id ', id);
+	var cookie = req.cookies.cookieName;
+	console.log('cookie ', cookie);
+
 	console.log(req.params.id);
 	Promo.findById(id).exec(
 		function(err, promo) {

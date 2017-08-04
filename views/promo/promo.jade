@@ -21,8 +21,9 @@ block title
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/promo.css')
 block content_scripts
+	script(type='text/javascript', src='/build/js/promo.js')
 block content
-	.photo_container
+	.photo_container(data-id='_co' + promo.id)
 		svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://		www.w3.org/1999/xlink', x='0px', y='0px', width='506', height='729', 		viewbox='0 0 506 729', enable-background='new 0 0 507.3 728.2', xml:space='		preserve')
 			g
 				line(fill='none', stroke='#000000', x1='0', y1='0', x2='506', y2='729')
@@ -49,11 +50,14 @@ block content
 					.rus Все работы
 			- else
 					.eng All works
-		a.add(href="/add")
+		a.add(href='/add') 
+		a.edit(href='/edit/'+ promo._id)
 			- if (promo.lang === 'rus')
-					.rus Сделать свой
+					.rus Редактировать
 			- else
-					.eng Make own
+					.eng Edit
+
+
 		a.share(href='#share')
 	#share.share_block
 		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
