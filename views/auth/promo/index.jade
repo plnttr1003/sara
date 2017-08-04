@@ -4,6 +4,7 @@ block title
 	title #NEWSPACEMOSCOW
 
 block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
 
 block content_scripts
 	script(type='text/javascript', src='/build/js/lists.js')
@@ -14,10 +15,12 @@ block content
 	br
 	a.add(href='/auth/promo/add') добавить промо
 	br
-	br
 	.main_menu_block
 		each item in promo
+			.promo_img
+				a(href='/auth/promo/edit/' + item._id)
+					img(src='../'+item.path.share)
 			.promo
-				a.rm_item.rm_promo(href='#', id=item._id)= 'удалить '
+				a(href='/auth/promo/edit/' + item._id)= item.title + ''
 				!=' | '
-				a(href='/auth/promo/edit/' + item._id)= item.title + ' //  item'
+				a.rm_item.rm_promo(href='#', id=item._id)= 'удалить '
