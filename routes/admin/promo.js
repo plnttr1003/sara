@@ -97,10 +97,9 @@ exports.add_form = function(req, res, next) {
 
 													gm(files.image.path).autoOrient().resize(400, false).write(newPath + '/thumb.jpg', function(err) {
 															if (err) return next(err);
-
+																promo.path.share = 'images/promo/' + promo._id + '/s.jpg';
 																promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 																promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
-																promo.path.share = 'images/promo/' + promo._id + '/s.jpg'
 																del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
 																console.log(promo._id, true);
 																res.cookie('_co' + promo._id, true);
