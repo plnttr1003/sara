@@ -23,6 +23,7 @@ block content_style
 block content_scripts
 	script(type='text/javascript', src='/build/js/promo.js')
 block content
+	img.share_img(src='/' + promo.path.share)
 	.photo_container(data-id='_co' + promo.id)
 		svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://		www.w3.org/1999/xlink', x='0px', y='0px', width='506', height='729', 		viewbox='0 0 506 729', enable-background='new 0 0 507.3 728.2', xml:space='		preserve')
 			g
