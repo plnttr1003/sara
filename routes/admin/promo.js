@@ -74,7 +74,7 @@ function save_image(promo, files, newPath, framePath, fontName, res, req) {
 																promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
 																del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
 																console.log(promo._id, true);
-																res.cookie('_co' + promo._id, true, {domain:'newspace.moscow'});
+																res.cookie('_co' + promo._id, true, {domain:'.newspace.moscow'});
 																promo.save(function() {
 																	rimraf(files.image.path, function() {
 																		res.redirect('/i/' + promo._id);
