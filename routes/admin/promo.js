@@ -166,9 +166,9 @@ exports.edit_form = function(req, res) {
 
 	Promo.findById(id).exec(function(err, promo) {
 		promo.title = post.title;
+		promo.textWidth = post.textWidth;
+		promo.lang = post.lang;
 		console.log(post.title);
-		//team.phone = post.phone;
-		//team.num = post.num;
 
 		if (!files.image) {
 			return (function () {
@@ -178,18 +178,12 @@ exports.edit_form = function(req, res) {
 			})();
 		}
 
-		/*fs.mkdir(__appdir + '/public/images/teams/' + team._id, function() {
-			var newPath = __appdir + '/public/images/teams/' + team._id;;
-			gm(files.image.path).resize(1200, false).write(newPath + '/original.jpg', function() {
-				gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function() {
-					team.path.original = '/images/teams/' + team._id + '/logo.jpg';
-					team.path.thumb = '/images/teams/' + team._id + '/thumb.jpg';
-					team.save(function() {
-						res.redirect('/auth/teams');
-					});
-				});
-			});
-		});*/
+		var newPath = __appdir + '/public/images/promo/' + promo._id;
+		var framePath = __appdir + (promo.lang === 'rus' ? '/public/images/frame_ru.png' : '/public/images/frame_en.png');
+
+		var fontName = __appdir + '/public/fonts/Formular-Medium.ttf';
+
+		save_image(promo, files, newPath, framePath, fontName, res, req);
 
 	});
 }

@@ -25,7 +25,7 @@ block title
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
 block content
-	form(action='/'+ (!promo ? 'add' : 'edit'), method='post', enctype="multipart/form-data")
+	form(action= (!promo ? '/add' : ''), method='post', enctype="multipart/form-data")
 		.photo_container
 			svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='506', height='729', 		viewbox='0 0 506 729', enable-background='new 0 0 507.3 728.2', xml:space='		preserve')
 				g
@@ -63,8 +63,11 @@ block content
 					div НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ
 				.v_text.small_text.right_text
 					div NEWSPACEMOSCOW.RU
-			.t3.text.bottom_text.text_input(contenteditable) ЧТО ДУМАЕТЕ ОБ ЭТОМ?
-			input(name='title', id='text_input', value='ЧТО ДУМАЕТЕ ОБ ЭТОМ?', type='hidden')
+			- var title
+			- if (promo) title=promo.title
+			- else title='ЧТО ДУМАЕТЕ ОБ ЭТОМ?'
+			.t3.text.bottom_text.text_input(contenteditable) #{title}
+			input(name='title', id='text_input', value=title, type='hidden')
 			.hash_text.small_text #NEWSPACEMOSCOW
 			input(name='lang', id='lang', type='hidden', value='rus')
 			input(name='textWidth', id='textWidth', type='hidden')
