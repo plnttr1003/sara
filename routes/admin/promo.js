@@ -38,8 +38,6 @@ exports.list = function(req, res) {
 }
 
 
-
-
 function save_image(promo, files, newPath, framePath, fontName, res, req) {
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
 		gm(files.image.path).orientation(function(err, orient) {
@@ -76,7 +74,7 @@ function save_image(promo, files, newPath, framePath, fontName, res, req) {
 																promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
 																del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
 																console.log(promo._id, true);
-																res.cookie('_co' + promo._id, true);
+																res.cookie('_co' + promo._id, true, {domain:'newspace.moscow'});
 																promo.save(function() {
 																	rimraf(files.image.path, function() {
 																		res.redirect('/i/' + promo._id);
@@ -89,7 +87,6 @@ function save_image(promo, files, newPath, framePath, fontName, res, req) {
 										})
 								})
 						});
-
 			});
 		});
 	});
@@ -153,8 +150,6 @@ exports.edit = function(req, res) {
 					promo: promo
 				});
 		});
-
-		console.log('BODY', req.body);
 	}
 
 
