@@ -37,36 +37,10 @@ exports.list = function(req, res) {
 	});
 }
 
-// ------------------------
-// *** Add promo Block ***
-// ------------------------
 
-exports.add = function(req, res) {
-	res.render('auth/promo/add.jade');
-}
 
-exports.add_form = function(req, res, next) {
 
-	var post = req.body;
-	var files = req.files;
-
-	var promo = new Promo();
-	promo.title = post.title;
-	promo.textWidth = post.textWidth;
-	promo.lang = post.lang;
-
-	if (!files.image) {
-		return (function () {
-			promo.save(function(err, team) {
-				res.redirect('/i/' + promo._id);
-			});
-		})();
-	}
-
-	var newPath = __appdir + '/public/images/promo/' + promo._id;
-	var framePath = __appdir + (promo.lang === 'rus' ? '/public/images/frame_ru.png' : '/public/images/frame_en.png');
-
-	var fontName = __appdir + '/public/fonts/Formular-Medium.ttf';
+function save_image(promo, files, newPath, framePath, fontName, res, req) {
 	mkdirp(__appdir + '/public/images/promo/' + promo._id, function() {
 		gm(files.image.path).orientation(function(err, orient) {
 			gm(files.image.path).size(function(err, size) {
@@ -119,7 +93,42 @@ exports.add_form = function(req, res, next) {
 			});
 		});
 	});
+}
 
+
+
+// ------------------------
+// *** Add promo Block ***
+// ------------------------
+
+exports.add = function(req, res) {
+	res.render('auth/promo/add.jade');
+}
+
+exports.add_form = function(req, res, next) {
+
+	var post = req.body;
+	var files = req.files;
+
+	var promo = new Promo();
+	promo.title = post.title;
+	promo.textWidth = post.textWidth;
+	promo.lang = post.lang;
+
+	if (!files.image) {
+		return (function () {
+			promo.save(function(err) {
+				res.redirect('/i/' + promo._id);
+			});
+		})();
+	}
+
+	var newPath = __appdir + '/public/images/promo/' + promo._id;
+	var framePath = __appdir + (promo.lang === 'rus' ? '/public/images/frame_ru.png' : '/public/images/frame_en.png');
+
+	var fontName = __appdir + '/public/fonts/Formular-Medium.ttf';
+
+	save_image(promo, files, newPath, framePath, fontName, res, req);
 
 }
 
@@ -130,7 +139,7 @@ exports.add_form = function(req, res, next) {
 
 
 exports.edit = function(req, res) {
-
+	console.log('=== === EDIT === ===');
 	var id = req.params.id;
 	var cookieName = '_co' + id;
 	console.log('id ', id);
@@ -140,31 +149,48 @@ exports.edit = function(req, res) {
 	console.log(req.params.id);
 	Promo.findById(id).exec(
 		function(err, promo) {
-				async.forEach(promo.container, function(container, callback) {
-					callback();
-				}, function() {
-					res.render('auth/promo/add.jade', {
-						promo: promo,
-						containerOutput: JSON.stringify(promo.container)
-					});
+				res.render('auth/promo/add.jade', {
+					promo: promo
 				});
 		});
+
+		console.log('BODY', req.body);
 	}
 
 
 exports.edit_form = function(req, res) {
-	var post = req.body;
 	var id = req.params.id;
-	var promoObjects = post;
+	var post = req.body;
+	var files = req.files;
+	console.log('post', post);
 
-	var promo = new Promo();
-	promo.title = promoObjects['title'],
-	promo.imageContent = promoObjects['imageContent'];
-	promo.lang = promoObjects['lang'];
+	Promo.findById(id).exec(function(err, promo) {
+		promo.title = post.title;
+		console.log(post.title);
+		//team.phone = post.phone;
+		//team.num = post.num;
 
+		if (!files.image) {
+			return (function () {
+				promo.save(function(err, promo) {
+					res.redirect('back');
+				});
+			})();
+		}
 
-	promo.save(function() {
-		res.redirect('/auth/promo');
+		/*fs.mkdir(__appdir + '/public/images/teams/' + team._id, function() {
+			var newPath = __appdir + '/public/images/teams/' + team._id;;
+			gm(files.image.path).resize(1200, false).write(newPath + '/original.jpg', function() {
+				gm(files.image.path).resize(400, false).write(newPath + '/thumb.jpg', function() {
+					team.path.original = '/images/teams/' + team._id + '/logo.jpg';
+					team.path.thumb = '/images/teams/' + team._id + '/thumb.jpg';
+					team.save(function() {
+						res.redirect('/auth/teams');
+					});
+				});
+			});
+		});*/
+
 	});
 }
 

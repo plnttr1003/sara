@@ -12,8 +12,16 @@ function setBackground(imageType, imageBinaryCode) {
 		blobImg.offsetHeight = 'auto';
 		console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
 		console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
-		if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) photoUploader.className = 'photo_uploader horizontal_loaded'
-		else photoUploader.className = 'photo_uploader vertical_loaded'
+		if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) {
+			photoUploader.className = 'photo_uploader horizontal_loaded'
+			blobImg.style.marginLeft = '-' + blobImg.offsetWidth/2 + 'px';
+			blobImg.style.left = '50%';
+		}
+		else {
+			photoUploader.className = 'photo_uploader vertical_loaded'
+			blobImg.style.marginTop = '-' + blobImg.offsetHeight/2 + 'px';
+			blobImg.style.top = '50%';
+		}
 	})
 }
 function handleFileSelect(evt) {

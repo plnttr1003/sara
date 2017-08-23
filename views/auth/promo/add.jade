@@ -13,7 +13,14 @@ block title
 	meta(property='og:title', content='#contemporaryart')
 	meta(property='og:description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
 	meta(name='description', content="Что такое современное искусство? Расскажи нам, что ты думаешь, и ты увидишь свою авторскую открытку в #newspacemoscow.")
-
+	- var lang
+	- if (promo) 
+		-	lang = promo.lang
+		style
+			|	.rus,
+			|	.eng {display:none}
+			|	.#{lang} {display:block}
+			| body.#{lang} {display:flex}
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
@@ -24,7 +31,10 @@ block content
 				g
 					line(fill='none', stroke='#000000', x1='0', y1='0', x2='506', y2='729')
 					line(fill='none', stroke='#000000', x1='506', y1='0', x2='0', y2='729')
-			#drop_zone.photo_uploader
+			- var background
+			- if (promo) background = 'background-image:url('+ promo.path.original +')'
+			- else background = 'background:#fff'
+			#drop_zone.photo_uploader(style=background)
 				input.inputfile(id='image', name='image', type='file')
 				label#labelForFile(for='image')
 					span.hover
@@ -91,6 +101,9 @@ block content
 						path(fill='none', d='M239.4,37.4v-5h4.8v5H239.4z')
 
 
+	script
+		| initLang2 = '#{lang}'
+		| console.log(initLang2)
 
 	script(type='text/javascript', src='/build/js/scripts.js' + version)
 	script(type='text/javascript', src='/build/js/upload_script.js' + version)

@@ -6,11 +6,19 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function init() {
+	console.log('initLang', initLang2);
 	var locales = ['rus', 'eng'];
-	var locale = locales[getRandomInt(0, 2)]
-	document.body.className = locale;
-	changeBodyClass();
-	var localeInterval = setInterval(changeBodyClass, 5000);
+	var locale = locales[getRandomInt(0, 2)];
+	//console.log('initLang', initLang);
+	var initLang = initLang2 ? initLang2 : null;
+	if (!initLang) {
+		document.body.className = locale;
+		changeBodyClass();
+		var localeInterval = setInterval(changeBodyClass, 5000);
+	}
+	else {
+		document.body.className = initLang;
+	}
 
 
 	var clearedTextInput = false;
