@@ -6,10 +6,8 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function init() {
-	console.log('initLang', initLang2);
 	var locales = ['rus', 'eng'];
 	var locale = locales[getRandomInt(0, 2)];
-	//console.log('initLang', initLang);
 	var initLang = initLang2 ? initLang2 : null;
 	if (!initLang) {
 		document.body.className = locale;
@@ -19,7 +17,6 @@ function init() {
 	else {
 		document.body.className = initLang;
 	}
-
 
 	var clearedTextInput = false;
 	textPlaceHolder.addEventListener('focus', function() {
@@ -41,13 +38,10 @@ function init() {
 		clearInterval(localeInterval);
 	});
 
-	document.getElementById('render').addEventListener('click', function() {
+	document.getElementById('submit').addEventListener('click', function() {
 		clearInterval(localeInterval);
 	});
-
-
 }
-
 
 
 function changeBodyClass() {

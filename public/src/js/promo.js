@@ -1,14 +1,8 @@
 function init() {
-	var cookieName = document.querySelector('.photo_container').dataset.id;
-	console.log(cookieName);
-	console.log(getCookie(cookieName));
-	if (getCookie(cookieName)) document.querySelector('.edit').style.display = 'block';
-}
-function getCookie(name) {
-  var matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
+	var timestampKey = document.querySelector('.photo_container').dataset.timestamp;
+	var storage = window.localStorage;
+	console.log(timestampKey, storage, storage[timestampKey]);
+	if (storage[timestampKey] === 'true' || storage[timestampKey]) document.querySelector('.edit').style.display = 'block';
 }
 (function ready(fn) {
 	if (document.readyState != 'loading'){

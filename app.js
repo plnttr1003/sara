@@ -135,6 +135,9 @@ app.route('/edit/:id')
 app.route('/auth/promo/remove')
 	 .post(checkAuth, admin_promo.remove);
 
+app.route('/edit/promo/remove')
+	 .post(admin_promo.remove);
+
 // ------------------------
 // *** Auth Routes Block ***
 // ------------------------

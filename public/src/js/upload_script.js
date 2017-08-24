@@ -52,24 +52,35 @@ function handleDragOver(evt) {
 function handleDragLeave(evt) {
 	dropZone.classList.remove('dragover');
 }
-function renderCanvas() {
+function submitForm() {
 	var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
-	document.querySelector('.svg_spinner').className = 'svg_spinner show';
 	var placeholderTextSpan = document.createElement('span');
+	var storage = window.localStorage;
+
+	document.querySelector('.svg_spinner').className = 'svg_spinner show';
 	placeholderTextSpan.textContent = textPlaceHolder.textContent;
 	textPlaceHolder.textContent = '';
 	textPlaceHolder.appendChild(placeholderTextSpan);
 
 	document.getElementById('textWidth').value = placeholderTextSpan.offsetWidth;
 
-	console.log('width', placeholderTextSpan.offsetWidth);
-	setTimeout(function(){document.querySelector('form').submit()}, 5000);
+	if (timestampInit) {
+		storage.setItem(timestamp, true);
+	}
+
+	setTimeout(function(){document.querySelector('form').submit()}, 100);
 }
 
-(function stylizeFileInput() {
-	var input = document.getElementById('image');
-	var label  = document.getElementById('labelForFile');
-	var labelVal = document.getElementById('labelForFile').innerHTML;
+(function init() {
+var input = document.getElementById('image');
+setTimeStamp();
+function setTimeStamp() {
+	timestamp = Date.now();
+	var timestampInput;
+	if (timestampInit) {
+		timestampInput = document.getElementById('timestamp').value = timestamp;
+	}
+}
 
 	input.addEventListener('change', function(evt) {
 		console.log(evt.target.files[0]);
@@ -90,9 +101,7 @@ function renderCanvas() {
 	});
 })();
 
-var render = document.getElementById('render');
+var submit = document.getElementById('submit');
 var dropZone = document.getElementById('drop_zone');
-//dropZone.addEventListener('dragover', handleDragOver, false);
-//dropZone.addEventListener('dragleave', handleDragLeave, false);
-//dropZone.addEventListener('drop', handleFileSelect, false);
-render.addEventListener('click', renderCanvas);
+var timestamp;
+submit.addEventListener('click', submitForm);
