@@ -1,5 +1,5 @@
 function init() {
-	var timestampKey = document.querySelector('.photo_container').dataset.timestamp;
+	var timestampKey = timestamp;
 	var storage = window.localStorage;
 	console.log(timestampKey, storage, storage[timestampKey]);
 	if (storage[timestampKey] === 'true' || storage[timestampKey]) document.querySelector('.edit').style.display = 'block';
