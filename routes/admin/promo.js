@@ -170,7 +170,7 @@ exports.edit_form = function(req, res) {
 		if (!files.image) {
 			return (function () {
 				promo.save(function(err, promo) {
-					res.redirect('back');
+					res.redirect('/i/' + promo._id);
 				});
 			})();
 		}
