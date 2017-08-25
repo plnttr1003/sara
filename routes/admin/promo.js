@@ -169,6 +169,7 @@ exports.edit_form = function(req, res) {
 
 		if (!files.image) {
 			return (function () {
+				console.log('SAVE-->');
 				promo.save(function(err, promo) {
 					res.redirect('/i/' + promo._id);
 				});

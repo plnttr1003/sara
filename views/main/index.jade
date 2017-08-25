@@ -23,8 +23,9 @@ block title
 	meta(itemprop='image', content='http://newspace.moscow/' + promo[0].path.share)
 
 block content_style
-	link(rel='stylesheet', type='text/css', href='/build/css/main.css')
-	link(rel='stylesheet', type='text/css', href='/build/css/promo.css')
+	- var version = '?ver=8'
+	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/promo.css' + version)
 
 block content
 

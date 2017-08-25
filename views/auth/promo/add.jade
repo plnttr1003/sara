@@ -23,7 +23,8 @@ block title
 			| body.#{lang} {display:flex}
 
 block content_style
-	link(rel='stylesheet', type='text/css', href='/build/css/upload.css')
+	- var version = '?ver=8'
+	link(rel='stylesheet', type='text/css', href='/build/css/upload.css' + version)
 block content
 	form(action= (!promo ? '/add' : ''), method='post', enctype="multipart/form-data")
 		.photo_container(class= (!promo ? '' : 'edit_container'))

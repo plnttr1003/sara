@@ -23,7 +23,8 @@ block title
 	meta(name='twitter:image', content='http://newspace.moscow/' + promo.path.share)
 
 block content_style
-	link(rel='stylesheet', type='text/css', href='/build/css/promo.css')
+	- var version = '?ver=8'
+	link(rel='stylesheet', type='text/css', href='/build/css/promo.css' + version)
 block content_scripts
 	script= 'var timestamp=' + promo.timestamp +';'
 	script(type='text/javascript', src='/build/js/promo.js')
