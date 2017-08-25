@@ -31,7 +31,10 @@ gulp.task('stylus', function () {
 				compress: true
 			}))
 			.pipe(autoprefixer({
-				browsers: ['last 2 versions'],
+				browsers: [
+				'last 4 versions',
+				'iOS 7'
+				],
 				cascade: true
 			}))
 			.pipe(gulp.dest(paths.stylus.dest));
