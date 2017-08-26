@@ -53,9 +53,9 @@ block content
 	.save
 		a.s_text(href="/")
 			- if (promo.lang === 'rus')
-					.rus Все работы
+					.rus Галерея
 			- else
-					.eng All works
+					.eng Gallery
 		a.add(href='/add') 
 		a.edit(href='/edit/'+ promo._id)
 			- if (promo.lang === 'rus')

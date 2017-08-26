@@ -1,3 +1,19 @@
+.element {
+  animation: pulse 5s infinite;
+}
+
+@keyframes color
+	0%
+		color #000
+	60%
+		color #000
+	63%
+		color #fff
+	97%
+		color #fff
+	100%
+		color #000
+
 html
 	display block
 	body
@@ -29,9 +45,17 @@ html
 	flex-flow row wrap
 	flex-flow row wrap
 	justify-content center
-	margin 0 20px 50px
+	margin 0 20px 90px
+	.promo_block_uploader
+		.promo_block_inner
+			.photo_uploader
+				animation color 3s infinite
+	@media (max-width:768px)
+		margin 0 0px 90px
 .promo_block
-	margin 30px 15px 0
+	margin 80px 45px 0
+	@media (max-width:768px)
+		margin 50px 20px 0
 	&.promo_block_h
 		width 254px
 		height 0
@@ -39,6 +63,7 @@ html
 .promo_block_inner
 	overflow hidden
 	background-size contain
+	background-color #fff
 	.photo_container
 		width 252px
 		height 364.5px

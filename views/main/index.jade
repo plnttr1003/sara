@@ -30,6 +30,49 @@ block content_style
 block content
 
 	.content_block
+		.promo_block.promo_block_uploader
+			.promo_block_inner
+				a.photo_container(href='/add')
+					svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='253', height='364.5', 		viewbox='0 0 253 364.5', enable-background='new 0 0 253,65 364.1', xml:space='		preserve')
+						g
+							line(fill='none', stroke='#000000', x1='0', y1='0', x2='253', y2='364.5')
+							line(fill='none', stroke='#000000', x1='253', y1='0', x2='0', y2='364.5')
+					.photo_uploader
+						- if (promo.lang === 'rus')
+							span.rus
+								| МЕСТО
+								br
+								| ДЛЯ
+								br
+								| ФОТО
+						- else
+							span.eng
+								| PUT
+								br
+								| YOUR
+								br
+								| PHOTO
+								br
+								| HERE
+					.text.top_text
+						- if (promo.lang === 'rus')
+								.rus
+									| СОВРЕМЕННОЕ ИСКУССТВО
+									br
+									|	ЭТО...
+						- else
+								.eng CONTEMPORARY ART IS...
+					.vertical_texts
+						.v_text.small_text.left_text
+							div НОВОЕ ПРОСТРАНСТВО ТЕАТРА НАЦИЙ
+						.v_text.small_text.right_text
+							div NEWSPACEMOSCOW.RU
+					.text.bottom_text.text_input
+						- if (promo.lang === 'rus')
+							| ЧТО ДУМАЕТЕ ОБ ЭТОМ?
+						- else
+							| PUT YOUR TEXT HERE
+					.hash_text.small_text #NEWSPACEMOSCOW
 		each item in promo
 			.promo_block
 				.promo_block_inner
