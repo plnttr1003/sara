@@ -1,13 +1,24 @@
 var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
 var textInput = document.getElementById('text_input');
-
+var submitButton = document.getElementById('submit');
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function init() {
+	console.log('** ** HASH ** **', window.location.hash);
+	var hash = window.location.hash.replace('#', '');
 	var locales = ['rus', 'eng'];
-	var locale = locales[getRandomInt(0, 2)];
+	var locale;
+	if (hash === 'rus') {
+		locale = 'eng';
+	}
+	else if (hash === 'eng') {
+		locale = 'rus';
+	}
+	else {
+		locale = locales[getRandomInt(0, 2)];
+	}
 	var initLang = initLang2 ? initLang2 : null;
 	if (!initLang) {
 		document.body.className = locale;
@@ -27,18 +38,19 @@ function init() {
 			clearedTextInput = true;
 		}
 		document.getElementById('lang').value = document.body.className;
+		submitButton.className = 'save item add_image visible_button';
 	});
 
 	textPlaceHolder.addEventListener('blur', function() {
 		textInput.value = this.textContent;
 	});
 
-
 	document.getElementById('image').addEventListener('focus', function() {
 		clearInterval(localeInterval);
+		submitButton.className = 'save item add_image visible_button';
 	});
 
-	document.getElementById('submit').addEventListener('click', function() {
+	submitButton.addEventListener('click', function() {
 		clearInterval(localeInterval);
 	});
 }

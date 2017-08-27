@@ -29,16 +29,19 @@ html, body
 		&.edit
 			display none
 			flex 1
-			border-width 1px 0
+			border-width 1px 1px 1px 0
 		&:hover
 			text-decoration none
 			background #000
 			color #fff
 	.empty
-		border-width 1px 0
+		border-color transparent
+		&:hover
+			background transparent
 	.share
 		padding 0.1em 0.6em
 		text-align center
+		border none
 		span
 			font-family 'icons2'
 			display inline-block
@@ -99,16 +102,12 @@ html, body
 					.ya-share2__icon
 						background-image none
 						font-family 'icons'
-						//font-size 38px
 						font-size 2.8em
 						color #000
-						//height 39px
 						height 1.9em
 						width auto
-						//margin 0 0px
 						margin 0 0.3em
 						text-align center
-						//line-height 38px
 						line-height 1.45em
 						&:hover
 							color #5d5d5d

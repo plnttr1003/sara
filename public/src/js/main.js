@@ -23,11 +23,7 @@ function init() {
 	var body = document.body;
 	var skip = 15;
 	var lastStartLoadedItem = document.querySelector('.promo_block:nth-child(16)');
-	console.log('LSLI', lastStartLoadedItem);
-	console.log('scrollCheck', scrollCheck);
-	console.log('height', document.body.offsetHeight);
 	document.addEventListener('scroll', function() {
-		console.log('offsetTop:', scrollCheck.offsetTop, 'scrollTop', body.scrollTop + body.offsetHeight);
 		if (scrollCheck.offsetTop < (body.scrollTop + body.offsetHeight + 100)) {
 			skip = skip + 15;
 			loadNewItems(skip, 15, contentBlock);
@@ -41,4 +37,3 @@ function init() {
 		document.addEventListener('DOMContentLoaded', fn);
 	}
 })(init)
-

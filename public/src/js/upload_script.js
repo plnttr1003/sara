@@ -1,10 +1,9 @@
 function setBackground(imageType, imageBinaryCode) {
 	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
 	var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
-
-	//document.querySelector('.photo_uploader').style.backgroundImage = 'url(' + base64Image +')';
 	var blobImg = document.createElement('img');
 	var photoUploader = document.querySelector('.photo_uploader');
+
 	blobImg.src = base64Image;
 	photoUploader.appendChild(blobImg);
 	blobImg.addEventListener('load', function(){
@@ -24,6 +23,7 @@ function setBackground(imageType, imageBinaryCode) {
 		}
 	})
 }
+
 function handleFileSelect(evt) {
 	dropZone.classList.remove('dragover');
 	evt.stopPropagation();
@@ -42,6 +42,7 @@ function handleFileSelect(evt) {
 	var blob = file.slice(start, stop + 1);
 	reader.readAsBinaryString(blob);
 }
+
 function handleDragOver(evt) {
 	evt.stopPropagation();
 	evt.preventDefault();
@@ -49,9 +50,11 @@ function handleDragOver(evt) {
 	dropZone.classList.add('dragover');
 	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
 }
+
 function handleDragLeave(evt) {
 	dropZone.classList.remove('dragover');
 }
+
 function submitForm() {
 	var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
 	var placeholderTextSpan = document.createElement('span');
