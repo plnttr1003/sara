@@ -9,50 +9,56 @@ html, body
 	flex-direction column
 
 .save
-	font-size 19px
+	font-size 1.2em
 	border none
-	margin 10px 0 10px
+	margin 0.5em 0
 	color #000
-	padding 7px 10px
 	display flex
 	justify-content space-between
 	align-items center
-	border 1px solid #000
-	flex 1 0
-	a
+	a,
+	.empty
 		display block
-		text-decoration underline
+		text-decoration none
 		cursor pointer
-		&.add
-			font-family icons
-			font-size 30px
-			text-decoration none
-			&:hover
-				color #5d5d5d
+		border 1px solid #000
+		padding 0.6em
+		text-transform uppercase
+		text-align center
+		flex 1
 		&.edit
 			display none
+			flex 1
+			border-width 1px 0
 		&:hover
 			text-decoration none
+			background #000
+			color #fff
+	.empty
+		border-width 1px 0
 	.share
-		font-family 'icons2'
-		pointer-events all
-		vertical-align top
-		display inline-block
-		font-size 19px
-		text-align right
-		text-decoration none
-		float right
-		width 34px
-		height 34px
+		padding 0.1em 0.6em
 		text-align center
-		line-height 35px
-		border-radius 50%
-		background #000
-		color #fff
-		&:after
-			content ''
+		span
+			font-family 'icons2'
+			display inline-block
+			font-size 1.2em
+			width 1.9em
+			height 1.9em
+			text-align center
+			line-height 1.9em
+			border-radius 50%
+			background #000
+			color #fff
+			max-width 1.9em
+			padding 0
+			&:after
+				content ''
 		&:hover
-			background #5d5d5d
+			span
+				background #fff
+				color #000
+
 #share
 	opacity 0
 	z-index -1
@@ -70,8 +76,8 @@ html, body
 		display flex
 		flex-direction column
 	.share_title
-		font-size 20px
-		margin 0 0 10px
+		font-size 1.41em
+		margin 0 0 0.5em
 	&:target
 		z-index 10
 		opacity 1
@@ -93,13 +99,17 @@ html, body
 					.ya-share2__icon
 						background-image none
 						font-family 'icons'
-						font-size 38px
+						//font-size 38px
+						font-size 2.8em
 						color #000
-						height 39px
+						//height 39px
+						height 1.9em
 						width auto
-						margin 0 0px
+						//margin 0 0px
+						margin 0 0.3em
 						text-align center
-						line-height 38px
+						//line-height 38px
+						line-height 1.45em
 						&:hover
 							color #5d5d5d
 						&:after

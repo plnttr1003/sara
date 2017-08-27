@@ -52,8 +52,8 @@ function changeBodyClass() {
 	}
 	else if (document.body.className.indexOf('eng') !== -1) {
 		document.body.className = 'rus'
-		textPlaceHolder.textContent = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
-		textInput.value = 'ЧТО ДУМАЕТЕ ОБ ЭТОМ?';
+		textPlaceHolder.textContent = 'МЕСТО ДЛЯ ТЕКСТА';
+		textInput.value = 'МЕСТО ДЛЯ ТЕКСТА';
 	}
 }
 (function ready(fn) {

@@ -25,6 +25,7 @@ block title
 block content_style
 	- var version = '?ver=8'
 	link(rel='stylesheet', type='text/css', href='/build/css/upload.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/resp.css' + version)
 block content
 	form(action= (!promo ? '/add' : ''), method='post', enctype="multipart/form-data")
 		.photo_container(class= (!promo ? '' : 'edit_container'))
@@ -78,12 +79,27 @@ block content
 			- else timestamp_class='timestamp_empty'
 			input(name='timestamp', id='timestamp', text='timestamp', value=timestamp, class=timestamp_class, type='hidden')
 		.save_container
-			- if (promo)
-				.del.rm_item(id=promo.id) Удалить
-			.save#submit
-				span.rus СОХРАНИТЬ
-				span.eng SAVE
+			a.item.s_text(href="/")
+				span.rus < Галерея
+				span.eng < Gallery
+			- var save_class = '';
+			- if (!promo) save_class = 'add_image';
 
+			.save.item#submit(class=save_class)
+				span.rus
+					- if (promo)
+						| СОХРАНИТЬ
+					- else
+						| ЗАГРУЗИТЬ
+				span.eng
+					- if (promo)
+						| SAVE
+					- else
+						| UPLOAD
+			- if (promo)
+				.item.del.rm_item(id=promo.id)
+					span.rus Удалить
+					span.eng Delete
 
 		.svg_spinner
 			.svg_spinner_container

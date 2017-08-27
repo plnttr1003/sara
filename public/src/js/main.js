@@ -1,29 +1,29 @@
 function loadNewItems(skip, limit, elem) {
-		var
-			requestURL = '/promo',
-			params='skip='+ skip +'&limit='+ limit,
-			request = new XMLHttpRequest();
+	var requestURL = '/promo';
+	var params='skip='+ skip +'&limit='+ limit;
+	var request = new XMLHttpRequest();
 
-		request.open("POST", requestURL, true);
-		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		request.send(params);
-		request.onload = function(e) {
-			if (request.status === 200) {
-				console.log('====', request.responseText);
-				if (request.responseText != 'out') {
-					elem.insertAdjacentHTML('beforeend', request.responseText);
-				}
+	request.open("POST", requestURL, true);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	request.send(params);
+	request.onload = function(e) {
+		if (request.status === 200) {
+			console.log('====', request.responseText);
+			if (request.responseText != 'out') {
+				elem.insertAdjacentHTML('beforeend', request.responseText);
 			}
 		}
+	}
 }
 
 
 function init() {
-	console.log('== == == ||| *** ||| == == ==')
 	var contentBlock = document.querySelector('.content_block');
 	var scrollCheck = document.querySelector('.scroll_check');
 	var body = document.body;
 	var skip = 15;
+	var lastStartLoadedItem = document.querySelector('.promo_block:nth-child(16)');
+	console.log('LSLI', lastStartLoadedItem);
 	console.log('scrollCheck', scrollCheck);
 	console.log('height', document.body.offsetHeight);
 	document.addEventListener('scroll', function() {

@@ -25,6 +25,7 @@ block title
 block content_style
 	- var version = '?ver=8'
 	link(rel='stylesheet', type='text/css', href='/build/css/promo.css' + version)
+	link(rel='stylesheet', type='text/css', href='/build/css/resp.css' + version)
 block content_scripts
 	script= 'var timestamp=' + promo.timestamp +';'
 	script(type='text/javascript', src='/build/js/promo.js')
@@ -53,16 +54,16 @@ block content
 	.save
 		a.s_text(href="/")
 			- if (promo.lang === 'rus')
-					.rus Галерея
+					span.rus < Галерея
 			- else
-					.eng Gallery
-		a.add(href='/add') 
+					span.eng < Gallery
 		a.edit(href='/edit/'+ promo._id)
 			- if (promo.lang === 'rus')
-					.rus Редактировать
+					span.rus Изменить
 			- else
-					.eng Edit
+					span.eng Edit
 		a.share(href='#share')
+			span
 	#share.share_block
 		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
 		script(src='//yastatic.net/share2/share.js')
