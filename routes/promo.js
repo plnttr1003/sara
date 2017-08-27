@@ -24,7 +24,7 @@ exports.get_promo = function(req, res) {
 		console.log('++ promo ++', promo);
 		if (promo && promo.length > 0) {
 			console.log('Promo.length', promo.length);
-			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo, locale: req.locale}));
+			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
 		} else {
 			res.send('out');
 		}
