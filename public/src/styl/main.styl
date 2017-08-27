@@ -4,15 +4,15 @@
 
 @keyframes color
 	0%
-		color #000
-	60%
-		color #000
-	63%
-		color #fff
-	97%
-		color #fff
+		opacity 0
+	1%
+		opacity 1
+	38%
+		opacity 1
+	46%
+		opacity 0
 	100%
-		color #000
+		background #eee
 
 html
 	display block
@@ -49,7 +49,21 @@ html
 	.promo_block_uploader
 		.promo_block_inner
 			.photo_uploader
-				animation color 3s infinite
+				span
+					position absolute
+					top 0
+					bottom 0
+					right 0
+					left 0
+					display flex
+					justify-content center
+					align-items center
+					opacity 0
+				.eng
+					animation color 5s infinite
+					animation-delay 2.5s
+				.rus
+					animation color 5s infinite
 	@media (max-width:768px)
 		margin 0 0px 90px
 .promo_block
@@ -60,6 +74,7 @@ html
 		width 254px
 		height 0
 		margin-top 0
+		order 100000
 .promo_block_inner
 	overflow hidden
 	background-size contain

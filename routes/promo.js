@@ -15,14 +15,13 @@ exports.promo = function(req, res) {
 	Promo.findById(id).exec(function(err, promo) {
 		res.render('promo/promo.jade', {promo: promo});
 	});
-
 }
 
 exports.get_promo = function(req, res) {
 	var post = req.body;
-
-	Promo.where('title').where('status').ne('hidden').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
-		if (promo.length > 0) {
+	Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
+		if (promo && promo.length > 0) {
+			console.log('Promo.length', promo.length);
 			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo, locale: req.locale}));
 		} else {
 			res.send('out');

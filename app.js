@@ -92,7 +92,12 @@ app.route('/')
 	.get(main.index)
 
 // === promo Route
+app.route('/promo')
+	.post(promo.get_promo);
+
+
 app.route('/i/:id').get(promo.promo);
+
 
 
 //!

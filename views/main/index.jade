@@ -38,14 +38,12 @@ block content
 							line(fill='none', stroke='#000000', x1='0', y1='0', x2='253', y2='364.5')
 							line(fill='none', stroke='#000000', x1='253', y1='0', x2='0', y2='364.5')
 					.photo_uploader
-						- if (promo.lang === 'rus')
 							span.rus
 								| МЕСТО
 								br
 								| ДЛЯ
 								br
 								| ФОТО
-						- else
 							span.eng
 								| PUT
 								br
@@ -122,3 +120,5 @@ block content
 		.promo_block.promo_block_h
 		.promo_block.promo_block_h
 		.promo_block.promo_block_h
+	.scroll_check
+	script(type='text/javascript', src='/build/js/main.js')
