@@ -25,7 +25,7 @@ exports.get_promo = function(req, res) {
 			console.log('Promo.length', promo.length);
 			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
 		} else {
-			res.send('out');
+			res.send('out' + Promo + '||' +  promo);
 		}
 	});
 }
