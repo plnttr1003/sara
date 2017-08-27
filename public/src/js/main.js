@@ -8,7 +8,6 @@ function loadNewItems(skip, limit, elem) {
 	request.send(params);
 	request.onload = function(e) {
 		if (request.status === 200) {
-			console.log('====', request.responseText);
 			if (request.responseText != 'out') {
 				elem.insertAdjacentHTML('beforeend', request.responseText);
 			}

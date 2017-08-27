@@ -19,7 +19,9 @@ exports.promo = function(req, res) {
 
 exports.get_promo = function(req, res) {
 	var post = req.body;
+	//console.log('Promo', Promo);
 	Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
+		console.log('++ promo ++', promo);
 		if (promo && promo.length > 0) {
 			console.log('Promo.length', promo.length);
 			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo, locale: req.locale}));
