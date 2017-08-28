@@ -1,6 +1,6 @@
 function loadNewItems(skip, limit, elem) {
 	var requestURL = '/p';
-	var params='skip='+ skip +'&limit=12';
+	var params='skip='+ skip +'&limit='+ limit;
 	var request = new XMLHttpRequest();
 
 	request.open("POST", requestURL, true);
