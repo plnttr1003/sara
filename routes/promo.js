@@ -19,7 +19,7 @@ exports.promo = function(req, res) {
 
 exports.get_promo = function(req, res) {
 	var post = req.body;
-	Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
+	/*Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
 		console.log('++ promo ++', promo);
 		if (promo && promo.length > 0) {
 			console.log('Promo.length', promo.length);
@@ -28,4 +28,15 @@ exports.get_promo = function(req, res) {
 			res.send('out' + ' || ' +  promo + 'SKIP: ' +  post.skip + 'LIMIT: ' + post.limit);
 		}
 	});
+*/
+
+
+  Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
+    if (promo.length > 0) {
+      res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
+    } else {
+      res.send('out');
+    }
+  });
+
 }
