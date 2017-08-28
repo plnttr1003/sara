@@ -1,40 +1,34 @@
 function setBackground(imageType, imageBinaryCode) {
-	document.querySelector('.photo_uploader label').style.visibility = 'hidden';
-	var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
-	var blobImg = document.createElement('img');
-	var photoUploader = document.querySelector('.photo_uploader');
+	console.log('imageType', imageType);
+	if (imageType === 'image/png' || imageType === 'image/jpeg' || imageType === 'image/gif') {
 
-	blobImg.src = base64Image;
-	photoUploader.appendChild(blobImg);
-	blobImg.addEventListener('load', function(){
-		blobImg.offsetWidth = 'auto';
-		blobImg.offsetHeight = 'auto';
-		console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
-		console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
-		if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) {
-			photoUploader.className = 'photo_uploader horizontal_loaded'
-			blobImg.style.marginLeft = '-' + blobImg.offsetWidth/2 + 'px';
-			blobImg.style.left = '50%';
-		}
-		else {
-			photoUploader.className = 'photo_uploader vertical_loaded'
-			blobImg.style.marginTop = '-' + blobImg.offsetHeight/2 + 'px';
-			blobImg.style.top = '50%';
-		}
-	})
-}
+		document.querySelector('.photo_uploader label').style.visibility = 'hidden';
+		var base64Image = 'data:' + imageType + ';base64,' + btoa(imageBinaryCode);
+		var blobImg = document.createElement('img');
+		var photoUploader = document.querySelector('.photo_uploader');
 
-function validateExtension() {
-  var allowedFiles = [".doc", ".docx", ".pdf"];
-  var fileUpload = document.getElementById("fileUpload");
-  var lblError = document.getElementById("lblError");
-  var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
-  if (!regex.test(fileUpload.value.toLowerCase())) {
-      lblError.innerHTML = "Please upload files having extensions: <b>" + allowedFiles.join(', ') + "</b> only.";
-      return false;
-  }
-  lblError.innerHTML = "";
-  return true;
+		blobImg.src = base64Image;
+		photoUploader.appendChild(blobImg);
+		blobImg.addEventListener('load', function(){
+			blobImg.offsetWidth = 'auto';
+			blobImg.offsetHeight = 'auto';
+			console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
+			console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
+			if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) {
+				photoUploader.className = 'photo_uploader horizontal_loaded'
+				blobImg.style.marginLeft = '-' + blobImg.offsetWidth/2 + 'px';
+				blobImg.style.left = '50%';
+			}
+			else {
+				photoUploader.className = 'photo_uploader vertical_loaded'
+				blobImg.style.marginTop = '-' + blobImg.offsetHeight/2 + 'px';
+				blobImg.style.top = '50%';
+			}
+		})
+	}
+	else {
+		document.getElementById('image').value = '';
+	}
 }
 
 function handleFileSelect(evt) {
@@ -98,7 +92,7 @@ function setTimeStamp() {
 }
 
 	input.addEventListener('change', function(evt) {
-		console.log(evt.target.files[0]);
+		console.log(evt.target.files[0].type); //'tiff' // 'png' // 'jpeg' // ''
 		var file = evt.target.files[0];
 		var start = 0;
 		var stop = file.size - 1;
