@@ -17,7 +17,7 @@ exports.promo = function(req, res) {
 	});
 }
 
-exports.get_promo = function(req, res) {
+/*exports.get_promo = function(req, res) {
 	var post = req.body;
 	Promo.where('title').sort('-date').skip(post.skip).limit(post.limit).exec(function(err, promo) {
 		console.log('++ promo ++', promo);
@@ -27,5 +27,12 @@ exports.get_promo = function(req, res) {
 		} else {
 			res.send('***' + Promo + '***' + 'out' + ' || ' +  promo + 'SKIP: ' +  post.skip + 'LIMIT: ' + post.limit);
 		}
+	});
+}*/
+
+exports.get_promo = function(req, res) {
+	Promo.where('title').where('status').ne('hidden').limit(12).sort('-date').exec(function(err, promo) {
+		//res.render('promo', {promo: promo});
+		res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
 	});
 }
