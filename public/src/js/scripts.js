@@ -28,21 +28,27 @@ function init() {
 	else {
 		document.body.className = initLang;
 	}
-
 	var clearedTextInput = false;
+	var textContent;
 	textPlaceHolder.addEventListener('focus', function() {
 		clearInterval(localeInterval);
 		this.style.textDecoration = 'none';
-		if (!clearedTextInput) {
-			this.textContent = '';
+		textContent = this.textContent;
+		if (this.textContent === 'PUT YOUR TEXT HERE' || this.textContent === 'МЕСТО ДЛЯ ТЕКСТА') {
 			clearedTextInput = true;
+			this.textContent = '';
 		}
 		document.getElementById('lang').value = document.body.className;
 		submitButton.className = 'save item add_image visible_button';
 	});
 
 	textPlaceHolder.addEventListener('blur', function() {
-		textInput.value = this.textContent;
+		console.log('vlur');
+		if (this.textContent === '' || this.textContent === ' ') {
+			this.textContent = textContent;
+		}
+		console.log('this.textContent', this.textContent);
+		textInput.value = (this.textContent !== 'PUT YOUR TEXT HERE' && this.textContent !== 'МЕСТО ДЛЯ ТЕКСТА') ? this.textContent : '';
 	});
 
 	document.getElementById('image').addEventListener('focus', function() {
@@ -60,12 +66,12 @@ function changeBodyClass() {
 	if (document.body.className.indexOf('rus') !== -1) {
 		document.body.className = 'eng'
 		textPlaceHolder.textContent = 'PUT YOUR TEXT HERE';
-		textInput.value = 'PUT YOUR TEXT HERE';
+		textInput.value = '';
 	}
 	else if (document.body.className.indexOf('eng') !== -1) {
 		document.body.className = 'rus'
 		textPlaceHolder.textContent = 'МЕСТО ДЛЯ ТЕКСТА';
-		textInput.value = 'МЕСТО ДЛЯ ТЕКСТА';
+		textInput.value = '';
 	}
 }
 (function ready(fn) {
