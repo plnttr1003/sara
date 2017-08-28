@@ -92,7 +92,7 @@ app.route('/')
 	.get(main.index)
 
 // === promo Route
-app.route('/promo')
+app.route('/p')
 	.post(promo.get_promo);
 
 

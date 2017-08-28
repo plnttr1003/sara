@@ -1,5 +1,5 @@
 function loadNewItems(skip, limit, elem) {
-	var requestURL = '/promo';
+	var requestURL = '/p';
 	var params='skip='+ skip +'&limit='+ limit;
 	var request = new XMLHttpRequest();
 
