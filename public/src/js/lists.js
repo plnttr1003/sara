@@ -3,7 +3,7 @@ function removeItem() {
 	dc = document,
 	rm_item = document.querySelectorAll('.rm_item');
 		rm_item.forEach(function(item){
-			console.log(window.location);
+			//console.log(window.location);
 			item.addEventListener('click', function(event) {
 				if (confirm('Удалить?')) {
 					var
