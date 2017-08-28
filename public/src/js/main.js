@@ -13,6 +13,7 @@ function loadNewItems(skip, limit, elem) {
 			}
 		}
 	}
+	console.log('skip', skip, 'limit', limit);
 }
 
 
@@ -20,11 +21,11 @@ function init() {
 	var contentBlock = document.querySelector('.content_block');
 	var scrollCheck = document.querySelector('.scroll_check');
 	var body = document.body;
-	var skip = 15;
+	var skip = 12;
 	var lastStartLoadedItem = document.querySelector('.promo_block:nth-child(16)');
 	document.addEventListener('scroll', function() {
 		if (scrollCheck.offsetTop < (body.scrollTop + body.offsetHeight + 100)) {
-			skip = skip + 15;
+			skip = skip + 12;
 			loadNewItems(skip, 12, contentBlock);
 		}
 	})
