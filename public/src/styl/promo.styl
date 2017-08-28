@@ -72,78 +72,91 @@ html, body
 	right 0
 	bottom 0
 	position fixed
-	background: rgba(255, 255, 255, 0.88);
 	display flex
 	align-items center
 	justify-content center
-	.share_inner
-		display flex
-		flex-direction column
-	.share_title
-		font-size 1.41em
-		margin 0 0 0.5em
 	&:target
 		z-index 10
 		opacity 1
-	.ya-share2
-		ul.ya-share2__list
+	.share_outer
+		background: rgba(255, 255, 255, 0.88);
+		display flex
+		align-items center
+		justify-content center
+		max-width 506px
+		max-height 488px
+		border 1px solid #000
+		transform-origin 0 0
+		width: 55.52812072vh
+		height: 53.552812078vh
+		margin auto
+		position relative
+
+		.share_inner
 			display flex
-			width 180px
-			justify-content space-between
-			li.ya-share2__item_service_vkontakte
-				order 1
-			li.ya-share2__item_service_facebook
-				order 0
-			li.ya-share2__item_service_telegram
-				order 2
-			li
-				margin 0
-				.ya-share2__badge
-					background none
-					.ya-share2__icon
-						background-image none
-						font-family 'icons'
-						font-size 2.8em
-						color #000
-						height 1.9em
-						width auto
-						margin 0 0.3em
-						text-align center
-						line-height 1.45em
-						&:hover
-							color #5d5d5d
-						&:after
-							display inline-block
-				&.ya-share2__item_service_facebook
-					.ya-share2__icon
-						&:after
-							content ''
+			flex-direction column
+		.share_title
+			font-size 1.41em
+			margin 0 0 0.5em
+		.ya-share2
+			ul.ya-share2__list
+				display flex
+				width 180px
+				justify-content space-between
+				li.ya-share2__item_service_vkontakte
+					order 1
+				li.ya-share2__item_service_facebook
+					order 0
+				li.ya-share2__item_service_telegram
+					order 2
+				li
+					margin 0
+					.ya-share2__badge
+						background none
+						.ya-share2__icon
+							background-image none
+							font-family 'icons'
+							font-size 2.8em
+							color #000
+							height 1.9em
+							width auto
+							margin 0 0.3em
+							text-align center
+							line-height 1.45em
+							&:hover
+								color #5d5d5d
+							&:after
+								display inline-block
+					&.ya-share2__item_service_facebook
+						.ya-share2__icon
+							&:after
+								content ''
 
-				&.ya-share2__item_service_vkontakte
-					.ya-share2__icon
-						&:after
-							content ''
+					&.ya-share2__item_service_vkontakte
+						.ya-share2__icon
+							&:after
+								content ''
 
-				&.ya-share2__item_service_telegram
-					.ya-share2__icon
-						&:after
-							content ''
+					&.ya-share2__item_service_telegram
+						.ya-share2__icon
+							&:after
+								content ''
 
-	.share_close
-		font-family 'icons2'
-		pointer-events all
-		vertical-align top
-		display inline-block
-		height 40px
-		width 40px
-		font-size 32px
-		text-align center
-		line-height 40px
-		text-decoration none
-		top 20px
-		right 20px
-		position absolute
-		&:hover
-			color #5d5d5d
-		&:after
-			content ""
+		.share_close
+			font-family 'icons2'
+			pointer-events all
+			vertical-align top
+			display inline-block
+			height 1.2em
+			width 1.2em
+			font-size 3em
+			text-align center
+			line-height 1.2em
+			text-decoration none
+			top 0.3em
+			right 0.3em
+			position absolute
+			&:hover
+				color #5d5d5d
+			&:after
+				content ""

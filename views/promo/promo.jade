@@ -66,13 +66,14 @@ block content
 		a.share(href='#share')
 			span
 	#share.share_block
-		script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
-		script(src='//yastatic.net/share2/share.js')
-		a.share_close(href="#")
-		.share_inner
-			.share_title
-				- if (promo.lang === 'rus')
-						.rus ПОДЕЛИТЬСЯ...
-				- else
-						.eng SHARE...
-			.ya-share2(data-services='vkontakte,facebook,telegram')
+		.share_outer
+			script(src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js')
+			script(src='//yastatic.net/share2/share.js')
+			a.share_close(href="#")
+			.share_inner
+				.share_title
+					- if (promo.lang === 'rus')
+							.rus ПОДЕЛИТЬСЯ...
+					- else
+							.eng SHARE...
+				.ya-share2(data-services='vkontakte,facebook,telegram')
