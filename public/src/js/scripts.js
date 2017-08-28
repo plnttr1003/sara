@@ -36,19 +36,19 @@ function init() {
 		textContent = this.textContent;
 		if (this.textContent === 'PUT YOUR TEXT HERE' || this.textContent === 'МЕСТО ДЛЯ ТЕКСТА') {
 			clearedTextInput = true;
-			this.textContent = '';
+			this.textContent = ' ';
 		}
+		this.focus();
 		document.getElementById('lang').value = document.body.className;
 		submitButton.className = 'save item add_image visible_button';
 	});
 
 	textPlaceHolder.addEventListener('blur', function() {
-		console.log('vlur');
 		if (this.textContent === '' || this.textContent === ' ') {
 			this.textContent = textContent;
 		}
 		console.log('this.textContent', this.textContent);
-		textInput.value = (this.textContent !== 'PUT YOUR TEXT HERE' && this.textContent !== 'МЕСТО ДЛЯ ТЕКСТА') ? this.textContent : '';
+		textInput.value = (this.textContent != 'PUT YOUR TEXT HERE' && this.textContent != 'МЕСТО ДЛЯ ТЕКСТА') ? this.textContent : '';
 	});
 
 	document.getElementById('image').addEventListener('focus', function() {
