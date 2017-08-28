@@ -56,7 +56,7 @@ function handleDragLeave(evt) {
 }
 
 function submitForm() {
-	var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
+	var textPlaceHolder = document.querySelector('.text.bottom_text.text_input.text_position');
 	var placeholderTextSpan = document.createElement('span');
 	var storage = window.localStorage;
 

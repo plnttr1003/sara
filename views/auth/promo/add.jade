@@ -67,9 +67,8 @@ block content
 					div NEWSPACEMOSCOW.RU
 			- var title
 			- if (promo) title=promo.title
-			- else title='ЧТО ДУМАЕТЕ ОБ ЭТОМ?'
-			.t3.text.bottom_text.text_input(contenteditable) #{title}
-			input(name='title', id='text_input', value=title, type='hidden')
+			.t3.text.bottom_text.text_input.text_position
+			input.t3.text.bottom_text.text_input(name='title', id='text_input', value=title, maxlength='30')
 			.hash_text.small_text #NEWSPACEMOSCOW
 			input(name='lang', id='lang', type='hidden', value='rus')
 			input(name='textWidth', id='textWidth', type='hidden')

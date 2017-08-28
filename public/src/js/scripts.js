@@ -1,4 +1,5 @@
-var textPlaceHolder = document.querySelector('.text.bottom_text.text_input');
+var inputTextPlaceHolder = document.querySelector('input.text.bottom_text.text_input');
+var textPlaceHolder = document.querySelector('div.text.bottom_text.text_input');
 var textInput = document.getElementById('text_input');
 var submitButton = document.getElementById('submit');
 
@@ -6,7 +7,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function init() {
-	console.log('** ** HASH ** **', window.location.hash);
 	var hash = window.location.hash.replace('#', '');
 	var locales = ['rus', 'eng'];
 	var locale;
@@ -30,7 +30,13 @@ function init() {
 	}
 	var clearedTextInput = false;
 	var textContent;
-	textPlaceHolder.addEventListener('focus', function() {
+
+	inputTextPlaceHolder.addEventListener('focus', function() {
+		clearInterval(localeInterval);
+		submitButton.className = 'save item add_image visible_button';
+	});
+
+	/*textPlaceHolder.addEventListener('focus', function() {
 		clearInterval(localeInterval);
 		this.style.textDecoration = 'none';
 		textContent = this.textContent;
@@ -42,13 +48,12 @@ function init() {
 		document.getElementById('lang').value = document.body.className;
 		submitButton.className = 'save item add_image visible_button';
 	});
-
-	textPlaceHolder.addEventListener('blur', function() {
-		if (this.textContent === '' || this.textContent === ' ') {
-			this.textContent = textContent;
-		}
-		console.log('this.textContent', this.textContent);
-		textInput.value = (this.textContent != 'PUT YOUR TEXT HERE' && this.textContent != 'МЕСТО ДЛЯ ТЕКСТА') ? this.textContent : '';
+	*/
+	inputTextPlaceHolder.addEventListener('blur', function() {
+		textPlaceHolder.textContent = this.value;
+	});
+	inputTextPlaceHolder.addEventListener('keyup', function() {
+		textPlaceHolder.textContent = this.value;
 	});
 
 	document.getElementById('image').addEventListener('focus', function() {
@@ -63,15 +68,14 @@ function init() {
 
 
 function changeBodyClass() {
+	var textValue = ['PUT YOUR TEXT HERE', 'МЕСТО ДЛЯ ТЕКСТА']
 	if (document.body.className.indexOf('rus') !== -1) {
-		document.body.className = 'eng'
-		textPlaceHolder.textContent = 'PUT YOUR TEXT HERE';
-		textInput.value = '';
+		document.body.className = 'eng';
+		inputTextPlaceHolder.setAttribute('placeholder', textValue[0]);
 	}
 	else if (document.body.className.indexOf('eng') !== -1) {
-		document.body.className = 'rus'
-		textPlaceHolder.textContent = 'МЕСТО ДЛЯ ТЕКСТА';
-		textInput.value = '';
+		document.body.className = 'rus';
+		inputTextPlaceHolder.setAttribute('placeholder', textValue[1]);
 	}
 }
 (function ready(fn) {
