@@ -25,7 +25,7 @@ function init() {
 	document.addEventListener('scroll', function() {
 		if (scrollCheck.offsetTop < (body.scrollTop + body.offsetHeight + 100)) {
 			skip = skip + 15;
-			loadNewItems(skip, 15, contentBlock);
+			loadNewItems(skip, 12, contentBlock);
 		}
 	})
 }
