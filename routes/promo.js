@@ -31,7 +31,7 @@ exports.promo = function(req, res) {
 }*/
 
 exports.get_promo = function(req, res) {
-	Promo.where('title').where('status').ne('hidden').skip(15).limit(12).sort('-date').exec(function(err, promo) {
+	Promo.where('title').where('status').ne('hidden').skip(req.body.skip).limit(12).sort('-date').exec(function(err, promo) {
 		//res.render('promo', {promo: promo});
 		res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
 	});
