@@ -18,8 +18,7 @@ block content
 	.main_menu_block
 		each item in promo
 			.promo_img
-				a(href='/auth/promo/edit/' + item._id)
-					img(src='../'+item.path.share)
+				img(src='../'+item.path.share)
 			.promo
 				a(href='/auth/promo/edit/' + item._id)= item.title + ''
 				!=' | '
