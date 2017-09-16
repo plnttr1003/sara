@@ -20,7 +20,7 @@ exports.promo = function(req, res) {
 exports.get_promo = function(req, res) {
 	Promo.where('title').sort('-date').skip(parseInt(req.body.skip), 10).limit(parseInt(req.body.limit), 10).exec(function(err, promo) {
 		if (promo && promo.length > 0) {
-			console.log('Promo.length', promo.length);
+			//console.log('Promo.length', promo.length);
 			res.send(jade.renderFile(__appdir + '/views/promo/get_promo.jade', {promo: promo}));
 		} else {
 			res.send('out');

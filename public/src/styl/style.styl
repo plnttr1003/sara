@@ -1,3 +1,33 @@
+@keyframes not_valid_after
+	0%
+		background #fff
+		color #f00
+	70%
+		background #9c0202
+		color #fff
+	100%
+		background transparent
+		color transparent
+
+@keyframes not_valid_border
+	0%
+		border-color #f00
+		color #f00
+	70%
+		border-color #9c0202
+		color #9c0202
+	100%
+		border-color #000
+		color #000
+
+@keyframes not_valid_line
+	0%
+		stroke #f00
+	70%
+		stroke #9c0202
+	100%
+		stroke #000
+
 html, body
 	margin 0
 	padding 0
@@ -33,6 +63,30 @@ svg
 		height 100%
 		top 0
 		left 0
+	&.not_valid_file
+		animation not_valid_border 0.9s ease-in-out
+		animation-fill-mode forwards
+		animation-iteration-count 1
+		&:after
+			content 'Неправильный формат файла'
+			display flex
+			position absolute
+			animation not_valid_after 0.9s ease-in-out
+			animation-fill-mode forwards
+			animation-iteration-count 1
+			top 22.3%
+			left 22.3%
+			right 22.3%
+			bottom 22.3%
+			z-index 10
+			align-items center
+			justify-content center
+			text-align center
+			font-size 2.2em
+		line
+			animation not_valid_line 0.9s ease-in-out
+			animation-fill-mode forwards
+			animation-iteration-count 1
 
 .photo_uploader
 	position absolute

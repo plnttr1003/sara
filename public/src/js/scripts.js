@@ -43,7 +43,6 @@ function init() {
 	});
 
 	inputTextPlaceHolder.addEventListener('blur', function() {
-		console.log('B L U R', this.value);
 		if (this.value === '' || this.value === ' ') {
 			textPlaceHolder.textContent = textContent;
 			inputTextPlaceHolder.setAttribute('placeholder', locale === 'eng' ? textValue[0] : textValue[1]);

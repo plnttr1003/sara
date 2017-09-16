@@ -1,5 +1,5 @@
 function setBackground(imageType, imageBinaryCode) {
-	console.log('imageType', imageType);
+	//console.log('imageType', imageType);
 	if (imageType === 'image/png' || imageType === 'image/jpeg' || imageType === 'image/gif') {
 
 		document.querySelector('.photo_uploader label').style.visibility = 'hidden';
@@ -12,8 +12,8 @@ function setBackground(imageType, imageBinaryCode) {
 		blobImg.addEventListener('load', function(){
 			blobImg.offsetWidth = 'auto';
 			blobImg.offsetHeight = 'auto';
-			console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
-			console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
+			//console.log('width', blobImg.offsetWidth, 'height', blobImg.offsetHeight);
+			//console.log(403.88/280.34, blobImg.offsetHeight/blobImg.offsetWidth);
 			if (blobImg.offsetHeight/blobImg.offsetWidth <= 403.88/280.34) {
 				photoUploader.className = 'photo_uploader horizontal_loaded'
 				blobImg.style.marginLeft = '-' + blobImg.offsetWidth/2 + 'px';
@@ -27,7 +27,16 @@ function setBackground(imageType, imageBinaryCode) {
 		})
 	}
 	else {
+		var photo_container = document.querySelector('.photo_container');
+		var save_container = document.querySelector('.save_container')
+		photo_container.className = 'photo_container not_valid_file';
 		document.getElementById('image').value = '';
+		submitButton.className = 'save item add_image';
+		save_container.style.opacity = 0;
+		setTimeout(function(){
+			photo_container.className = 'photo_container';
+			save_container.style.opacity = 1;
+		}, 900)
 	}
 }
 
@@ -41,7 +50,7 @@ function handleFileSelect(evt) {
 	var stop = file.size - 1;
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
-		console.log('load end');
+		//console.log('load end');
 		if (evt.target.readyState == FileReader.DONE) { // DONE == 2
 			setBackground(file.type, evt.target.result);
 		}
@@ -92,14 +101,14 @@ function setTimeStamp() {
 }
 
 	input.addEventListener('change', function(evt) {
-		console.log(evt.target.files[0].type); //'tiff' // 'png' // 'jpeg' // ''
+		//console.log(evt.target.files[0].type); //'tiff' // 'png' // 'jpeg' // ''
 		var file = evt.target.files[0];
 		var start = 0;
 		var stop = file.size - 1;
 
 		var reader = new FileReader();
 		reader.onloadend = function(evt) {
-			console.log('load end');
+			//console.log('load end');
 			if (evt.target.readyState == FileReader.DONE) { // DONE == 2
 				setBackground(file.type, evt.target.result);
 			}

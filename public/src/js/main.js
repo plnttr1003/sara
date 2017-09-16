@@ -13,7 +13,7 @@ function loadNewItems(skip, limit, elem) {
 			}
 		}
 	}
-	console.log('skip', skip, 'limit', limit);
+	//console.log('skip', skip, 'limit', limit);
 }
 
 

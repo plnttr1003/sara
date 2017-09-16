@@ -43,9 +43,9 @@ function save_image(promo, files, newPath, framePath, fontName, res, req) {
 		gm(files.image.path).orientation(function(err, orient) {
 			gm(files.image.path).size(function(err, size) {
 				if (err) return next(err);
-						console.log('orientation ', orient);
+						//console.log('orientation ', orient);
 						var vertical = (orient === 'RightTop' || orient === 'LeftBottom');
-						console.log('vertical ', vertical);
+						//console.log('vertical ', vertical);
 						gm(files.image.path).autoOrient().quality(100)
 							.resize(((403.88/280.34 >= size.height/size.width) && !vertical) ? (size.width * (405 / size.height)) : 282)
 							.crop(282, 405, ((403.88/280.34 >= size.height/size.width) && !vertical) ? ((size.width * (405 / size.height)) - 282) / 2 : 0,  ((403.88/280.34 >= size.height/size.width) && !vertical) ? 0 : ((size.height * (282 / size.width)) - 405) / 2)
@@ -73,7 +73,7 @@ function save_image(promo, files, newPath, framePath, fontName, res, req) {
 																promo.path.original = '/images/promo/' + promo._id + '/original.jpg';
 																promo.path.thumb = '/images/promo/' + promo._id + '/thumb.jpg';
 																del([newPath + '/logoTemp.jpg', newPath + '/frameText.jpg', files.image.path]);
-																console.log(promo._id, true);
+																//console.log(promo._id, true);
 																res.cookie('_co' + promo._id, true);
 																promo.save(function() {
 																	rimraf(files.image.path, function() {
@@ -137,14 +137,14 @@ exports.add_form = function(req, res, next) {
 
 
 exports.edit = function(req, res) {
-	console.log('=== === EDIT === ===');
+	//console.log('=== === EDIT === ===');
 	var id = req.params.id;
 	var cookieName = '_co' + id;
-	console.log('id ', id);
+	//console.log('id ', id);
 	var cookie = req.cookies.cookieName;
-	console.log('cookie ', cookie);
+	//console.log('cookie ', cookie);
 
-	console.log(req.params.id);
+	//console.log(req.params.id);
 	Promo.findById(id).exec(
 		function(err, promo) {
 				res.render('auth/promo/add.jade', {
@@ -158,18 +158,18 @@ exports.edit_form = function(req, res) {
 	var id = req.params.id;
 	var post = req.body;
 	var files = req.files;
-	console.log('post', post);
+	//console.log('post', post);
 
 	Promo.findById(id).exec(function(err, promo) {
 		promo.title = post.title;
 		promo.timestamp = post.timestamp;
 		promo.textWidth = post.textWidth;
 		promo.lang = post.lang;
-		console.log(post.title);
+		//console.log(post.title);
 
 		if (!files.image) {
 			return (function () {
-				console.log('SAVE-->');
+				//console.log('SAVE-->');
 				promo.save(function(err, promo) {
 					res.redirect('/i/' + promo._id);
 				});
@@ -194,8 +194,8 @@ exports.edit_form = function(req, res) {
 
 exports.remove = function(req, res) {
 	var id = req.body.id;
-	console.log('-----------');
-	console.log(req.body);
+	//console.log('-----------');
+	//console.log(req.body);
 	Promo.findByIdAndRemove(id, function() {
 		del.sync(__appdir + '/public/images/promo/' + id);
 		res.send('ok');
