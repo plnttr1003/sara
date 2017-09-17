@@ -21,7 +21,7 @@ function init() {
 	var contentBlock = document.querySelector('.content_block');
 	var scrollCheck = document.querySelector('.scroll_check');
 	var body = document.body;
-	var skip = 3;
+	var skip = 12;
 	var lastStartLoadedItem = document.querySelector('.promo_block:nth-child(16)');
 	document.addEventListener('scroll', function() {
 		if (scrollCheck.offsetTop < (body.scrollTop + body.offsetHeight + 100)) {
